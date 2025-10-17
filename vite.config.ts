@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite'
 
-// Auto-detect base for project pages. If you’re deploying to a user/organization
-// site repo named <username>.github.io, the base should be '/'.
-const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? ''
-const isUserSite = /^[\w-]+\.github\.io$/i.test(repo)
+export default defineConfig(({ command }) => {
+  // In GitHub Actions this env is "owner/repo"
+  const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] || ''
 
-export default defineConfig({
-  base: isUserSite ? '/' : `/${repo}/`,
+  // user/organization site repos look like "<username>.github.io"
+  const isUserSite = /^[\w-]+\.github\.io$/i.test(repo)
+
+  // For GitHub Pages build: '/' for user sites, '/repo/' for project sites
+  const pagesBase = isUserSite ? '/' : (repo ? `/${repo}/` : '/')
+
+  return {
+    // Always use '/' in dev to avoid malformed URLs.
+    // Use the Pages base only for build output.
+    base: command === 'serve' ? '/' : pagesBase,
+  }
 })
