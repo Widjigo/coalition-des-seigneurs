@@ -1,1 +1,0 @@
-# coalition-des-seigneurs
