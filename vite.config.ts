@@ -15,4 +15,5 @@ export default defineConfig(({ command }) => {
     // Use the Pages base only for build output.
     base: command === 'serve' ? '/' : pagesBase,
   }
+  
 })
