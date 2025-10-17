@@ -14,6 +14,5 @@ export default defineConfig(({ command }) => {
     // Always use '/' in dev to avoid malformed URLs.
     // Use the Pages base only for build output.
     base: command === 'serve' ? '/' : pagesBase,
-  }
-  
+  }  
 })
