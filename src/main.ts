@@ -11,7 +11,7 @@ const resetClasses = () => {
   card.classList.remove("swipeRight", "swipeLeft");
 };
 
-card.addEventListener("mousedown", (event) => {
+card.addEventListener("pointerdown", (event) => {
     isDragging = true;
     resetClasses();
     cardStartX = event.clientX;
@@ -22,7 +22,7 @@ card.addEventListener("mousedown", (event) => {
 })
 
 
-window.addEventListener("mousemove", (event) => {
+window.addEventListener("pointermove", (event) => {
     if (!isDragging) return;
     cardEndX = event.clientX;
     cardEndY = event.clientY;
@@ -46,7 +46,7 @@ window.addEventListener("mousemove", (event) => {
     }
 })
 
-window.addEventListener("mouseup", () => {    
+window.addEventListener("pointerup", () => {    
     if (!isDragging) return;      
     isDragging = false;           
     
