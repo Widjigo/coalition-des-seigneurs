@@ -1,16 +1,82 @@
-.card {
-    user-select: none;
+
+
+html, body { height: 100%; margin: 0; }
+
+.layout {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "aventuriers carte objets "
+        "footer footer footer ";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 3px;
+    background-color: dodgerblue;
+    padding: 5px;
 }
 
-.swipeLeft
-{
-    transform: translate(-40px, -10px) rotate(-15deg);
-    transition: transform 0.40s ease-in-out;
-    transform-origin: bottom ;
+.layout div {
+  background-color: white;
+  padding: 10px;
+  min-width: 0;
 }
 
-.swipeRight{
-    transform: translate(40px, -10px) rotate(15deg);
-    transition: transform 0.40s ease-in-out;
-    transform-origin: bottom ;
+.layout div.header {
+  grid-area: header;
+  text-align: left;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titles{
+  text-align: left;
+}
+
+.info-btn {
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  align-items:flex-end;
+}
+
+.layout div.aventuriers {
+  grid-area: aventuriers;
+}
+
+.box{
+  display:flex;
+  background-color: green;
+  display: flex;
+  border: 15px solid black;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 15px;
+}
+
+.vertical-txt{
+  writing-mode:vertical-lr;
+  transform: rotate(180deg);
+}
+
+.vertical-txt-right{
+  writing-mode:vertical-lr;
+  text-orientation:sideways;
+}
+
+.layout div.carte {
+  grid-area: carte;
+}
+.layout div.objets {
+  grid-area: objets;
+}
+
+.layout div.footer {
+  grid-area: footer;
+  text-align: center;  
 }

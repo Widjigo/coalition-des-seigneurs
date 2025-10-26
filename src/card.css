@@ -1,0 +1,22 @@
+
+
+.card .dflex{
+    height: 100%;
+    min-height: 0;
+}
+.card {
+    user-select: none;
+}
+
+.swipeLeft
+{
+    transform: translate(-40px, -10px) rotate(-15deg);
+    transition: transform 0.40s ease-in-out;
+    transform-origin: bottom ;
+}
+
+.swipeRight{
+    transform: translate(40px, -10px) rotate(15deg);
+    transition: transform 0.40s ease-in-out;
+    transform-origin: bottom ;
+}
