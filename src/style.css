@@ -13,6 +13,11 @@ html, body { height: 100%; margin: 0; }
     gap: 3px;
     background-color: dodgerblue;
     padding: 5px;
+    min-height:100svh
+}
+
+.aventuriers, .carte, .objets {
+  min-height: 0; 
 }
 
 .layout div {
@@ -32,7 +37,7 @@ html, body { height: 100%; margin: 0; }
     align-items: center;
 }
 
-.titles{
+.title{
   text-align: left;
 }
 
@@ -47,16 +52,31 @@ html, body { height: 100%; margin: 0; }
 
 .layout div.aventuriers {
   grid-area: aventuriers;
+  display: flex;
+}
+
+.box-left{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;;
+  align-items: center;
+  justify-content: center;
 }
 
 .box{
-  display:flex;
   background-color: green;
-  display: flex;
   border: 15px solid black;
   padding: 50px;
   margin: 20px;
   border-radius: 15px;
+}
+
+.box-right {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;;
+  align-items: center;
+  justify-content: center;
 }
 
 .vertical-txt{
@@ -74,9 +94,38 @@ html, body { height: 100%; margin: 0; }
 }
 .layout div.objets {
   grid-area: objets;
+  display: flex;
 }
 
 .layout div.footer {
   grid-area: footer;
   text-align: center;  
+}
+
+.left-choice{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;;
+  align-items: flex-start;
+}
+
+.right-choice {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;;
+  align-items: flex-end;
+}
+
+.imgArrow{
+  width:40%;
+  height:40%;
+}
+
+#card-img{
+  align-items: center;
+  width:80%;
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
 }

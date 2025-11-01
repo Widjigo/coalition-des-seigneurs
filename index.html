@@ -26,8 +26,10 @@
     </div>
 
     <div class="aventuriers">
-      <div class="vertical-txt"><p>Aventuriers</p></div>
-            <div>
+      <div class="vertical-txt" >
+        <p style="text-align: center">Aventuriers</p>
+      </div>
+      <div class="box-left">
         <div class="box">
         </div>
         <div class="box">
@@ -39,23 +41,24 @@
       </div>
     </div>
 
-    <div class="carte">
-      <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="carte" >
+      <div class="d-flex justify-content-center align-items-center h-100">
         <div id="card" class="card shadow" style="width: 25rem;" draggable="false">
-          <img class="card-img-top" src="public/test.png" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-light">Go somewhere</a>
+          <img id=card-img class="card-img-top overflow-hidden" alt="Card image cap">
+          <div class="card-body" style="min-height:0; overflow-y:auto; flex:1 1 auto;">
+            <h5 id="card-title" style="display: none;"></h5>
+            <div><p id="card-text"></p></div>
+            <div style=" display: flex;  justify-content: space-evenly; gap: 10px;">
+            <div class="left-choice"><p id="choixl"></p> <img class="imgArrow" src="/public/left.png"></div>
+            <div class="right-choice"><p id="choixr" style="text-align:right"></p><img class="imgArrow" src="/public/right.png"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="objets">
-      <div class="vertical-txt-right"><p> Objets </p></div>
-      <div>
+      <div class="box-right">
         <div class="box">
         </div>
         <div class="box">
@@ -65,14 +68,15 @@
         <div class="box">
         </div>
       </div>
+      <div class="vertical-txt-right"><p style="text-align: center"> Objets </p></div>
     </div>
 
     <div class="footer"> <button type="input"> Recommencer la partie </button>
       <p>bas de page</p>
     </div>
-
  
   <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="/src/cards.ts"></script>
 </body>
 
 </html>
