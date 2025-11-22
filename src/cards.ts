@@ -1,4 +1,4 @@
-import { CARDS, type StoryCard } from "./story";
+import { CARDS} from "./story";
 
 // Aller chercher l<information des cartes 
 const cardTitle = document.getElementById("card-title") as HTMLElement;
