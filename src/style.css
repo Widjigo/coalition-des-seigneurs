@@ -11,7 +11,7 @@ html, body { height: 100%; margin: 0; }
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: auto 1fr auto;
     gap: 3px;
-    background-color: dodgerblue;
+    background-color: #e6dac7;
     padding: 5px;
     min-height:100svh
 }
@@ -29,6 +29,9 @@ html, body { height: 100%; margin: 0; }
 .layout div.header {
   grid-area: header;
   text-align: left;
+  background-image: url(/public/background-head.png);
+  background-color: #e6dac7;
+  background-size: auto 100%;
 }
 
 .header-inner {
