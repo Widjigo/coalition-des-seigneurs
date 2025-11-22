@@ -1,5 +1,5 @@
-import type { aventurier } from "./aventuriers";
-import type { objet} from "./objets";
+//import type { aventurier } from "./aventuriers";
+//import type { objet} from "./objets";
 import { setupSwipe} from "./swipehandler";
 
 
@@ -8,14 +8,15 @@ const card = document.getElementById("card");
 setupSwipe(card);
 
 //adventurers in the adventure
-let party : aventurier[] = [];
+//let party : aventurier[] = [];
 
 //objects for the party
-let party_object: objet[] = [];
+// let party_object: objet[] = [];
+
 
 //informations obtenues
-let party_informationst = [];
+// let party_informationst = [];
 
 //Jauge de vitesse
-let speed_meter = 0;
+//let speed_meter = 0;
 
