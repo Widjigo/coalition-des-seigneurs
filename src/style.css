@@ -1,5 +1,4 @@
 
-
 html, body { height: 100%; margin: 0; }
 
 .layout {
@@ -29,7 +28,7 @@ html, body { height: 100%; margin: 0; }
 .layout div.header {
   grid-area: header;
   text-align: left;
-  background-image: url(/public/background-head.png);
+  background-image: url(/assets/background-head.png);
   background-color: #e6dac7;
   background-size: auto 100%;
 }
@@ -68,10 +67,19 @@ html, body { height: 100%; margin: 0; }
 
 .box{
   background-color: green;
-  border: 15px solid black;
+  border: 5px solid black;
   padding: 50px;
   margin: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
+  width: 150px;      /* your chosen size */
+  height: 150px;     
+  overflow: hidden; /* hides anything outside */
+}
+
+.box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .box-right {

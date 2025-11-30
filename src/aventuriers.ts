@@ -1,7 +1,10 @@
+import pimple_profil from "./assets/pimple_profil.png";
+
 // Type
 export type aventurier = {
   name: string;
   hp: number;
+  img: string;
   attack_type: string;
   dc: number | null;
   attack_bonus: number | null;
@@ -16,6 +19,7 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Pimple",
     hp: 17,
     attack_type: "Fouet d'eau",
+    img: pimple_profil,
     dc: null, 
     attack_bonus: 4,
     attack_dmg_roll: 6,
@@ -23,14 +27,27 @@ export const aventuriers: Record<number, aventurier> = {
     ability: "Lancer le sortilège «Lire les pensées»",
   },
 
-    2: {
+  2: {
     name: "Yibap",
     hp: 4,
+    img: pimple_profil,
     attack_type: "Nuage de spores (Affecte une créature)",
     dc: 10,
     attack_bonus: null ,
     attack_dmg_roll: null,
     attack_dmg_bonus: null,
     ability: "Sensibilité aiguë à la nature et à son environnement.",
+  },
+
+  3: {
+    name: "Marsyas",
+    hp: 14,
+    img: pimple_profil,
+    attack_type: "Charge de cornes",
+    dc: null ,
+    attack_bonus: 5,
+    attack_dmg_roll: 6,
+    attack_dmg_bonus: 3,
+    ability: "Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
   },
 };
