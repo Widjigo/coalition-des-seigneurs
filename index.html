@@ -13,16 +13,22 @@
   </head>
 
 <body>
-  <div class="layout">
+    <div class="pop-up-container">
+      <div class="pop-up">
+        <p>Text here</p>
+        <button class="btn btn-light close-btn" id="howtoplayclose"> Fermer </button>
+       </div>
+    </div>
 
+  <div class="layout">
     <div class="header">
       <div class="header-inner">
         <div class=title>
           <h3> Titre de la partie </h3>
           <p>Phrase de description du jeu</p>
         </div>
-        <button class="btn btn-primary info-btn"> Comment jouer ? </button>
-      </div>
+        <button id="howtoplayopen" class="btn btn-outline-dark btn-lg info-btn" style="background-color:#e6dac7"> Comment jouer ? </button>
+        </div>
     </div>
 
     <div class="aventuriers">
@@ -78,7 +84,6 @@
     <div class="footer"> <button type="input"> Recommencer la partie </button>
       <p>bas de page</p>
     </div>
- 
   <script type="module" src="/src/main.ts"></script>
   <script type="module" src="/src/current_card.ts"></script>
 </body>

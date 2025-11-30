@@ -140,3 +140,34 @@ html, body { height: 100%; margin: 0; }
   margin: 0 auto;
   object-fit: contain;
 }
+
+.pop-up-container {
+  display: block;  
+  position: fixed;
+  inset:0;
+  opacity: 0;
+  pointer-events: none;
+  height: 100vh ;
+  width: 100vw;
+  z-index: 2000;
+}
+
+.pop-up {
+  background-color: #e6dac7;
+  color: black;
+  position: absolute;
+  width: 600px;
+  max-width: 100%;
+  padding: 30px 50px;
+  border-radius: 5px;
+  text-align: right;
+  z-index: 2100;
+}
+
+.pop-up-container.show {
+  opacity: 1;
+  display:block;
+  pointer-events: auto;
+  left: -600px;
+
+}

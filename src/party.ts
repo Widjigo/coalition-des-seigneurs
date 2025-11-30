@@ -20,7 +20,9 @@ export function addToParty(member: aventurier) {
             const imgElement = memberImages[i];
             party[i+1] = member;
             imgElement.src = member.img;
-            console.log("member of party${i+1}:", party)}
-            return;
+            console.log("member of party${i+1}:", party)
+            return;}
+        else
+            console.log("No empty slot available in the party."); 
     }
  }

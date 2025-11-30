@@ -13,7 +13,25 @@ import bagkgroundHeadUrl from "./assets/background-head.png";
 const card = document.getElementById("card");
 setupSwipe(card); 
 
+//Comment jouer 
+const howtoplayopen = document.getElementById("howtoplayopen");
+const howtoplayclose = document.getElementById("howtoplayclose");
+const modalContainer = document.querySelector(".pop-up-container") as HTMLDivElement;
+const popup = document.querySelector(".pop-up") as HTMLDivElement;
 
+
+
+howtoplayopen.addEventListener("click", () => {
+    const rect = howtoplayopen.getBoundingClientRect();
+    popup.style.top = rect.bottom + "px";        // below the button
+    popup.style.left = rect.left + "px";         // aligned with left edge
+    popup.style.position = "absolute";
+    modalContainer.classList.add("show");
+});
+
+howtoplayclose.addEventListener("click", () => {
+    modalContainer.classList.remove("show");    
+});
 
 //objects for the party
 // let party_object: objet[] = [];
