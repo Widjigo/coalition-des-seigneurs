@@ -2,6 +2,7 @@ import pimple_profil from "./assets/pimple_profil.png";
 
 // Type
 export type aventurier = {
+  id: number;
   name: string;
   hp: number;
   img: string;
@@ -16,6 +17,7 @@ export type aventurier = {
 // aventuriers
 export const aventuriers: Record<number, aventurier> = {
   1: {
+    id: 1,
     name: "Pimple",
     hp: 17,
     attack_type: "Fouet d'eau",
@@ -28,6 +30,7 @@ export const aventuriers: Record<number, aventurier> = {
   },
 
   2: {
+    id: 2,
     name: "Yibap",
     hp: 4,
     img: pimple_profil,
@@ -40,6 +43,7 @@ export const aventuriers: Record<number, aventurier> = {
   },
 
   3: {
+    id: 3,
     name: "Marsyas",
     hp: 14,
     img: pimple_profil,

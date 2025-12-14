@@ -1,7 +1,7 @@
 
 import { setupSwipe} from "./swipehandler";
 
-//importation of images for the index.html
+//visual page principal
 import leftArrowUrl from "./assets/left.png";
 import rightArrowUrl from "./assets/right.png";
 import bagkgroundHeadUrl from "./assets/background-head.png";
@@ -18,8 +18,6 @@ const howtoplayopen = document.getElementById("howtoplayopen");
 const howtoplayclose = document.getElementById("howtoplayclose");
 const modalContainer = document.querySelector(".pop-up-container") as HTMLDivElement;
 const popup = document.querySelector(".pop-up") as HTMLDivElement;
-
-
 
 howtoplayopen.addEventListener("click", () => {
     const rect = howtoplayopen.getBoundingClientRect();

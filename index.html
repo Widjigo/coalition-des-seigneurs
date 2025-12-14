@@ -6,6 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link href="src/style.css" rel="stylesheet">
     <link href="src/card-view.css" rel="stylesheet">
+    <link href="src/pop-up_view.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +18,12 @@
       <div class="pop-up">
         <p>Text here</p>
         <button class="btn btn-light close-btn" id="howtoplayclose"> Fermer </button>
+       </div>
+    </div>
+
+    <div class="party_pop-up-container">
+      <div class="party_pop-up">
+        <p>Text here</p>
        </div>
     </div>
 
@@ -59,7 +66,7 @@
             <h5 id="card-title" style="display: none;"></h5>
             <div><p id="card-text"></p></div>
             <div style=" display: flex;  justify-content: space-evenly; gap: 10px;">
-            <div class="left-choice"><p id="choixl"></p> <img class="imgArrow" src="assets/left.png"></div>
+            <div class="left-choice"><p id="choixl"></p> <img class="imgArrow" id="imgArrowl" src="assets/left.png"></div>
             <div class="right-choice"><p id="choixr" style="text-align:right"></p><img class="imgArrow" src="assets/right.png"></div>
             </div>
           </div>
@@ -84,7 +91,7 @@
     <div class="footer"> <button type="input"> Recommencer la partie </button>
       <p>bas de page</p>
     </div>
-  <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="/src/main.ts" defer></script>
   <script type="module" src="/src/current_card.ts"></script>
 </body>
 
