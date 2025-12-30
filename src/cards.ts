@@ -8,6 +8,9 @@ import pimple from "./assets/pimple.png";
 import caverne from "./assets/caverne.png";
 import panier from "./assets/panier.png"; 
 import troglodyte from "./assets/troglodyte.png";
+import caverneThink from "./assets/caverne_think.png";
+import bestir from "./assets/bestir.png";
+import pimple_think from "./assets/pimple_think.png"; 
 
 // Type
 export type StoryCard = {
@@ -26,7 +29,7 @@ export const CARDS: Record<number, StoryCard> = {
   1: {
     numero: 1,
     nom: "Début",
-    description: "Au milieu d’une forêt connue par la population du continent pour son aura mystérieux et magique. C’est dans une grotte habitée de nombreux escargots géants qu’une communauté de Campestris, une espèce de myconides humanoïdes arborant des traits d’une grande diversité de champignons,  y vivent depuis des centaines d’années sous le nom de Grovine.",
+    description: "Dans une grotte, au coeur d’une forêt reconnue pour sa magie unique, une communauté de Campestris cohabite en symbiose avec des escargots géants. Dans ce village connu sous le nom de Grovine, ces myconides aux traits humanoïdes vivaient dans un calme relatif depuis une centaine d’années.",
     imageUrl: grovine,
     textGauche: null,
     textDroit: "Continuer",
@@ -37,7 +40,7 @@ export const CARDS: Record<number, StoryCard> = {
   2: {
     numero: 2,
     nom: "Trauma",
-    description: "Durant la dernière année, la communauté y a vécu un drame  qui a bouleversé leur cohabitation harmonieuse : un des escargots s’est métamorphosé en créature sanguinaire et a ravagé de nombreuse habitations, en plus de tuer trop d’habitants. Après qu’un groupe d’aventuriers ait pu mettre fin au massacre. ",
+    description: "Il y a de cela deux mois, l’un des escargots s’est métamorphosé en créature sanguinaire. Il a massacré de nombreux Campestris, en plus de ravager leurs habitations. Ce n’est que grâce à l’aide inattendu d’un groupe  d’aventuriers que le massacre a pris fin et que Grovine n’a pas été rayée de la forêt.",
     imageUrl: Escargot,
     textGauche: null,
     textDroit: "Continuer",
@@ -48,7 +51,7 @@ export const CARDS: Record<number, StoryCard> = {
   3: {
     numero: 3,
     nom: "Reconstruction",
-    description: "Un des leurs, Pimple, décida de rester auprès d’eux afin de reconstruire village.  Ce pixie à la peau bleuté et perlée d’eau mis la main à la pâte afin de travailler la terre pour permettre à de nouvelles habitations de pousser en prenant la mauvaise habitude de prendre des croquées de maisons aux endroits moins visibles. Malgré son attitude de monsieur je-sais-tout, sa petite propension aux mensonges augmentant ses exploits, Pimple est depuis toléré, accepté et apprécié de chacun par son implication. ",
+    description: "L’un de ces aventuriers, Pimple,  continue depuis d’aider les habitants à reconstruire le village.  Ce pixie, à la peau bleutée et perlée d’eau et à la fâcheuse habitude de prendre des croquées de maisons aux endroits les moins visibles, est non seulement toléré, mais aussi apprécié de tous pour son implication et sa volonté de contribuer à la renaissance du village.",
     imageUrl: pimple,
     textGauche: null,
     textDroit: "Continuer",
@@ -59,7 +62,7 @@ export const CARDS: Record<number, StoryCard> = {
   4: {
     numero: 4,
     nom: "Déclencheur",
-    description: "C’est en fin de journée, alors que la noirceur obscurci la forêt, Pimple était alors installé à l’extérieur de la grotte, préparant sa fameuse recette de gruau, quelques baies trouvées alentour et des fleurs de pissenlits pour sa couleur unique. Au travers de sa chanson grivoise, ingrédient secret de son gruau, Pimple entendit une commotion près de l’entrée de la grotte.  Volant à une vitesse maximale d’ailes et activant son invisibilité, il se rendit à l’entrée pour apercevoir une silhouette humanoïde. ",
+    description: "C’est alors que la forêt s’obscurcit que Pimple s’installe afin de préparer sa célèbre recette de gruau : quelques baies trouvées aux alentours, des fleurs de pissenlit pour la couleur, le tout accompagné d’une chanson grivoise, ingrédient secret de sa préparation. En plein milieu du refrain, Pimple entend une commotion; il active son invisibilité et se rend à toute puissance d’ailes vers l’entrée de la grotte. C’est alors qu’il aperçoit une silhouette capée dans l’obscurité. ",
     imageUrl: caverne,
     textGauche: null,
     textDroit: "Continuer",
@@ -70,10 +73,10 @@ export const CARDS: Record<number, StoryCard> = {
   5: {
     numero: 5,
     nom: "Kidnapping",
-    description: "La silhouette était effilée avec une démarche lourde et une cape recouvrant sa tête est son corps.  Sur son épaule était déposé un panier fait de racine mal tressée avec à l’intérieur quatre campestries. En plissant ses yeux, il reconnu immédiatement Lonfa, Rad, Mirren et Turrun, les enfants de Bestir et échangea un regard avec les enfants apeurés et hurlant, mais incapable de sortir du panier.",
+    description: "La silhouette est effilée, avec une démarche lourde et une cape recouvrant sa tête et son corps. Elle tient un panier grossièrement tressé, à l’intérieur duquel quatre campestries s’agitent. En plissant les yeux, Pimple reconnaît les enfants de Bestir, avec qui il échange un regard dans lequel il lit la peur et la panique. Que doit faire Pimple? ",
     imageUrl: panier,
-    textGauche: "Utiliser une détection de la pensée afin de connaître le lieu ou est emmené les enfants.",
-    textDroit: "S’approcher avec son invisibilité afin d’aller voler les enfants un à un.",
+    textGauche: "Utiliser une détection de la pensée afin d’obtenir plus ",
+    textDroit: "En restant invisible, tenter de reprendre les enfants un à un.",
     swipeGauche: () => CARDS[7],
     swipeDroite: () => CARDS[6],
   },
@@ -81,7 +84,7 @@ export const CARDS: Record<number, StoryCard> = {
   6: {
     numero: 6.1,
     nom: "Info_troglodyte",
-    description: "Invisible, Pimple s’approche discrètement afin d’aller chercher les enfants. Près de la créature une odeur atroce lui attaque les narines. De nature princesse, Pimple est immédiatement affaibli par un tournis important et laisse échapper une plainte provoquée par son haut le coeur. C’est alors qu’il aperçoit les traits de la créature au visage gris-brun et aux crocs accéré avec des traits reptiliens. Pris par surprise par l’odeur et la vue peut ragoûtante Pimple est dérouté et regarde autours de lui pour de l’aide. Au retour de son regard sur la créature, celle-ci semble s’être volatilisée. ",
+    description: "Pimple s’approche afin de récupérer les enfants. À moins d’un mètre de la créature, une odeur atroce lui attaque les narines. De nature princesse, Pimple est pris de tournis; il laisse échapper une plainte provoquée par son haut-le-coeur. Le son fait tourner la tête de la créature. Pimple aperçoit alors ses traits reptiliens, son visage gris-brun et ses crocs acérés.  Débordé de dégoût, Pimple voit noir. À son réveil, la créature qu’il reconnaît comme étant un troglodyte, s’est volatilisé.",
     imageUrl: troglodyte,
     textGauche: null,
     textDroit: "Continuer",
@@ -92,8 +95,8 @@ export const CARDS: Record<number, StoryCard> = {
   7: {
     numero: 6.2,
     nom: "Info_Grotte_puit",
-    description: "«Manger….  Feu à la grotte au puit avec autres troglo… Déliceux avec viande de gobelins.»",
-    imageUrl: pimple,
+    description: "«Manger…  Feu, grotte au puit … Déliceux… avec viande de gobelin.»",
+    imageUrl: caverneThink,
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
@@ -103,14 +106,25 @@ export const CARDS: Record<number, StoryCard> = {
   8: {
     numero: 7,
     nom: "Bestir raconte",
-    description: "Pimple, se dépêchant à entrer dans la grotte, rencontre Bestir  courrant vers la sortie avec toute sa capacité de campisterie qui tentait désespérément de rattraper la créature ayant kidnappé ses enfants. C’est en larmes et en sanglots qu’elle tenta de faire le récit à Pimple de ce qu’il avait déjà deviné. C’est à se moment que Pimple ne put résister au désespoir de Bestir et lui promis qu’il allait retrouver ses enfants",
-    imageUrl: pimple,
+    description: "Pimple entre en hâte dans la grotte et rencontre Bestir, courant désespérément vers la sortie pour porter secours à ses enfants. C’est entre deux sanglots qu’elle raconte à Pimple ce qu’il avait déjà deviné. Incapable de résister au désespoir de Bestir, surtout avec son statut officiel d’aventurier, Pimple lui promet qu’il sauvera ses enfants. ",
+    imageUrl: bestir,
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
     swipeDroite: () => {
       addToParty(aventuriers[1]);
-      return CARDS[8]},
+      return CARDS[9]},
+  },
+
+    9: {
+    numero: 8,
+    nom: "Yibap ou rechercher",
+    description: "En entrant dans la grotte, Pimple se demande s’il doit aller rejoindre Yibap, le plus aventurier des campestries, celui-là même qui prônait que les habitants de Grovine reconstruise leur ville ailleurs après la catastrophe… D’un autre côté, il se demande s’il doit aller plutôt explorer la grotte afin de s’équiper avant de partir. Le temps presse...Que faire?",
+    imageUrl: pimple_think,
+    textGauche: "Aller voir Yibap",
+    textDroit: "Fouiller la grotte",
+    swipeGauche: () => CARDS[9],
+    swipeDroite: () => CARDS[9],
   },
 };
 

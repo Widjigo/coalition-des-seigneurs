@@ -35,7 +35,7 @@ card?.addEventListener("transitionend", (e) => {
     if (card.classList.contains("swipeRight")) {
         currentcard = currentcard.swipeDroite();
     }
-    if (card.classList.contains("swipeLeft") && currentcard.swipeGauche == null) {
+    if (card.classList.contains("swipeLeft") && currentcard.swipeGauche != null) {
         currentcard = currentcard.swipeGauche();
     } 
 
