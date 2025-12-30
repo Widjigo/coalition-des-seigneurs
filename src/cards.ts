@@ -1,5 +1,6 @@
 import { aventuriers} from "./aventuriers";
 import { addToParty } from "./party";
+import { info } from "./informations";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -89,7 +90,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => CARDS[8],
+    swipeDroite: () => {info.push('Vous savez que les enfants ont été kidnappés par un troglodyte');  console.log("INFO après push:", info); return CARDS[8]},
   },
 
   7: {
@@ -100,7 +101,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => CARDS[8],
+    swipeDroite: () => {info.push('Vous savez que les enfants ont été emmenés à la grotte au puit.');  console.log("INFO après push:", info); return CARDS[8]},
   },
 
   8: {

@@ -10,8 +10,6 @@
 }
 
 .pop-up {
-  background-color: #e6dac7;
-  color: black;
   position: absolute;
   width: 600px;
   max-width: 100%;
@@ -41,8 +39,9 @@
 }
 
 .party_pop-up {
-  background-color: #e6dac7;
-  color: black;
+  background-color: #03735f;
+  border: 5px solid white;
+  color: white;
   position: absolute;
   width: 400px;
   max-width: 100%;

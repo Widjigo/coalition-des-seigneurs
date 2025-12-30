@@ -6,9 +6,15 @@
 }
 .card {
     user-select: none;
+    background-color: #03735f;
+    border-radius: 10px;
     display:flex;
     flex-direction: column;
     max-height: 100%;
+}
+
+.card .card-body {
+  background-color: #03735f;
 }
 
 .swipeLeft
