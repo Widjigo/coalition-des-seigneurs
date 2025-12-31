@@ -1,4 +1,5 @@
 import pimple_profil from "./assets/pimple_profil.png";
+import yibap_profil from "./assets/yibap_party.png";
 
 // Type
 export type aventurier = {
@@ -33,8 +34,8 @@ export const aventuriers: Record<number, aventurier> = {
     id: 2,
     name: "Yibap",
     hp: 4,
-    img: pimple_profil,
-    attack_type: "Nuage de spores (Affecte une créature)",
+    img: yibap_profil,
+    attack_type: "Nuage de spores\n Sur un 10 et -, la créature est étouffée et incapable d'attaquer durant un tour",
     dc: 10,
     attack_bonus: null ,
     attack_dmg_roll: null,

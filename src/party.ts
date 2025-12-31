@@ -13,7 +13,7 @@ const attack = document.getElementById("attack") as HTMLElement;
 const dmg = document.getElementById("dmg") as HTMLElement;
 const special = document.getElementById("special") as HTMLElement;
 const name_member = document.getElementById("name_member") as HTMLElement;
-
+const dmgRow = document.getElementById("dmgRow")!;
 
 
 // Image est est-elle vide?
@@ -68,8 +68,18 @@ function OpenPopup() {
       //show the member info in the pop-up
       name_member.textContent = member.name;
       hp.textContent = String(member.hp);
-      attack.textContent = member.attack_type + " +" + member.attack_bonus + " pour toucher ";
-      dmg.textContent = "1d" + member.attack_dmg_roll + " +" + member.attack_dmg_bonus;
+      attack.textContent =
+        member.attack_bonus != null
+          ? member.attack_type + " +" + member.attack_bonus + " pour toucher "
+          : member.attack_type;
+      if (member.attack_dmg_bonus != null){
+        dmg.textContent =
+        "1d" + member.attack_dmg_roll + " +" + member.attack_dmg_bonus;
+        dmgRow.classList.remove("d-none");
+      }
+      else {
+        dmgRow.classList.add("d-none");
+      }
       special.textContent = member.ability;
     });
   });

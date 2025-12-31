@@ -11,6 +11,7 @@
 
 .pop-up {
   position: absolute;
+  background-color: #e6dac7;
   width: 600px;
   max-width: 100%;
   padding: 30px 50px;

@@ -12,6 +12,7 @@ import troglodyte from "./assets/troglodyte.png";
 import caverneThink from "./assets/caverne_think.png";
 import bestir from "./assets/bestir.png";
 import pimple_think from "./assets/pimple_think.png"; 
+import yibap from "./assets/yibap.png";
 
 // Type
 export type StoryCard = {
@@ -120,12 +121,25 @@ export const CARDS: Record<number, StoryCard> = {
     9: {
     numero: 8,
     nom: "Yibap ou rechercher",
-    description: "En entrant dans la grotte, Pimple se demande s’il doit aller rejoindre Yibap, le plus aventurier des campestries, celui-là même qui prônait que les habitants de Grovine reconstruise leur ville ailleurs après la catastrophe… D’un autre côté, il se demande s’il doit aller plutôt explorer la grotte afin de s’équiper avant de partir. Le temps presse...Que faire?",
+    description: "En entrant dans la grotte, Pimple se demande s’il doit aller rejoindre Yibap, le plus aventurier des campestries, celui-là même qui prônait que les habitants de Grovine reconstruise leur village ailleurs après la catastrophe… D’un autre côté, il se demande s’il doit aller plutôt explorer la grotte afin de s’équiper avant de partir. Le temps presse...Que faire?",
     imageUrl: pimple_think,
     textGauche: "Aller voir Yibap",
     textDroit: "Fouiller la grotte",
-    swipeGauche: () => CARDS[9],
-    swipeDroite: () => CARDS[9],
+    swipeGauche: () => CARDS[10],
+    swipeDroite: () => CARDS[10],
+  },
+
+    10: {
+    numero: 9.1,
+    nom: "Aventurier Yibap",
+    description: "Yibap est au coeur du village, Pimple entends déjà sa voix qui s’insurge « Je vous l’avais dit, le village est maudit ! »  S’approchant doucement, Pimple se place près de Yibap et tapote son chapeau de champignon. Lorsque son attention se tourne vers Pimple, ce dernier lui dit d’une voix solennelle, mais tremblante :  «Le déménagement de Grovine est important, mais l’urgence est de retrouver les enfants, et j’ai besoin d’aventuriers».",
+    imageUrl: yibap,
+    textGauche: "Yibap gonfle son bedon de champignon avec fierté et accepte.",
+    textDroit: "Yibap lui répond : «N’importe quoi, je dois sauver le village! » et il refuse.",
+    swipeGauche:  () => {
+      addToParty(aventuriers[2]);
+      return CARDS[10]},
+    swipeDroite: () => CARDS[10],
   },
 };
 
