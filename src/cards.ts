@@ -1,6 +1,8 @@
 import { aventuriers} from "./aventuriers";
 import { addToParty } from "./party";
 import { info } from "./informations";
+import { objets } from "./objets";
+import { addToBag } from "./party_objects";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -13,6 +15,8 @@ import caverneThink from "./assets/caverne_think.png";
 import bestir from "./assets/bestir.png";
 import pimple_think from "./assets/pimple_think.png"; 
 import yibap from "./assets/yibap.png";
+import aminata from "./assets/aminata.png";
+
 
 // Type
 export type StoryCard = {
@@ -126,7 +130,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: "Aller voir Yibap",
     textDroit: "Fouiller la grotte",
     swipeGauche: () => CARDS[10],
-    swipeDroite: () => CARDS[10],
+    swipeDroite: () => CARDS[11],
   },
 
     10: {
@@ -138,8 +142,32 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Yibap lui répond : «N’importe quoi, je dois sauver le village! » et il refuse.",
     swipeGauche:  () => {
       addToParty(aventuriers[2]);
-      return CARDS[10]},
-    swipeDroite: () => CARDS[10],
+      return CARDS[11]},
+    swipeDroite: () => CARDS[12],
+  },
+
+    11: {
+    numero: 9.2,
+    nom: "Fouiller grovine",
+    description: "Pimple fouille la grotte et ses recoins moins connus dans l’espoir d’y trouver un objet utile pour sa quête. Outre Grovine et les escargots, la caverne n’est pas habitée; il ne trouve rien et commence à se décourager. Lorsqu’il s’assoit dans le jardin de myculture, il aperçoit un champignon rouge d’Amanita arrivé à maturité. Le connaissant pour ses vertus de guérison, il l’arrache sans plus réfléchir et le dépose dans son sac. ",
+    imageUrl: aminata,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => {
+      addToBag(objets[1]);
+      return CARDS[12]},
+  },
+
+    12: {
+    numero: 10,
+    nom: "recherche des rumeurs",
+    description: "Prêt à quitter Grovine, Pimple se demande s’il ne devrait pas prendre un peu plus de temps  afin de recueillir les témoignages des autres villageois",
+    imageUrl: pimple_think,
+    textGauche: "La situation presse; pas de temps à perdre à écouter les ragôts.",
+    textDroit: "Retarder le départ afin de récupérer des témoignages.",
+    swipeGauche: () => CARDS[12],
+    swipeDroite: () => CARDS[12],
   },
 };
 
