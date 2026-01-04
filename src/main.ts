@@ -31,12 +31,22 @@ howtoplayclose.addEventListener("click", () => {
     modalContainer.classList.remove("show");    
 });
 
-//objects for the party
-// let party_object: objet[] = [];
+// informations affichage 
+const infoopen = document.getElementById("infoopen") as HTMLDivElement;
+const infoClose = document.getElementById("infoClose")as HTMLDivElement;
+const infoModal = document.querySelector(".infoModal") as HTMLDivElement; 
+//const infoPopup = document.querySelector(".infoPopup") as HTMLDivElement; 
 
-//informations obtenues
-// let party_informationst = [];
+infoopen.addEventListener("click", () => {
+    infoModal.classList.add("show");
+});
 
-//Jauge de vitesse
-//let speed_meter = 0;
+infoClose.addEventListener("click", () => {
+    infoModal.classList.remove("show");    
+});
 
+// Recommencer 
+const newGame = document.getElementById("newGame");
+newGame.addEventListener("click", function() {
+  location.reload();
+});

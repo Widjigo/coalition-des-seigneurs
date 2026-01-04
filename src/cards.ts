@@ -1,6 +1,7 @@
 import { aventuriers} from "./aventuriers";
 import { addToParty } from "./party";
-import { info } from "./informations";
+import { InfoKnown, ajouterJauge, infos } from "./informations";
+import { infoReceive } from "./informations";
 import { objets } from "./objets";
 import { addToBag } from "./party_objects";
 
@@ -15,6 +16,7 @@ import caverneThink from "./assets/caverne_think.png";
 import bestir from "./assets/bestir.png";
 import pimple_think from "./assets/pimple_think.png"; 
 import yibap from "./assets/yibap.png";
+import ubal from "./assets/ubal.png";
 import aminata from "./assets/aminata.png";
 
 
@@ -95,7 +97,9 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => {info.push('Vous savez que les enfants ont été kidnappés par un troglodyte');  console.log("INFO après push:", info); return CARDS[8]},
+    swipeDroite: () => {InfoKnown(infos[2]);
+      return CARDS[8]
+    },
   },
 
   7: {
@@ -106,7 +110,8 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => {info.push('Vous savez que les enfants ont été emmenés à la grotte au puit.');  console.log("INFO après push:", info); return CARDS[8]},
+    swipeDroite: () => {InfoKnown(infos[1]);
+      return CARDS[8]},
   },
 
   8: {
@@ -166,8 +171,49 @@ export const CARDS: Record<number, StoryCard> = {
     imageUrl: pimple_think,
     textGauche: "La situation presse; pas de temps à perdre à écouter les ragôts.",
     textDroit: "Retarder le départ afin de récupérer des témoignages.",
-    swipeGauche: () => CARDS[12],
-    swipeDroite: () => CARDS[12],
+    swipeGauche: () => {
+      ajouterJauge(1);
+      CARDS[15]},
+    swipeDroite: () => {
+      if (infoReceive.some(i => i.numero === 1)) {
+        return CARDS[14];
+      } else if (infoReceive.some(i => i.numero === 2)) {
+        return CARDS[13];
+      }
+    },
+  },
+
+    13: {
+    numero: 11.1,
+    nom: "Ubal et les troglodtytes",
+    description: "Pimple connait bien Ubal, une campestrie appréciant toutes informations se rapprochant de près ou de loin d’une rumeur. Pimple l’aperçoit alors qu’elle accomplit déjà sa mission de commère professionnelle. Il lui demande si elle a une anecdote sur les troglodytes en quelque part dans sa mémoire. Elle raconte alors qu’il y a 10 ans, l’oncle de sa demi-soeur connait un membre de sa famille éloigné ayant été kidnappé par un troglodyte. Celui-ci aurait disparu dans une grotte appelée «La grotte au puit».  L’anecdote dure une éternité aux yeux de Pimple, mais au moins il repart avec un possible indice… ",
+    imageUrl: ubal,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => {InfoKnown(infos[1]);
+      return CARDS[15]},
+  },
+    14: {
+    numero: 11.2,
+    nom: "Ubal et la grotte au puits",
+    description: "Pimple connait bien Ubal, une campestrie appréciant toutes informations se rapprochant de près ou de loin d’une rumeur. Pimple l’aperçoit alors qu’elle accomplit déjà sa mission de commère professionnelle. Pimple lui parle de la grotte au puit. Elle raconte alors qu’il y a 10 ans, l’oncle de sa demi-soeur a un membre de sa famille éloigné qui aurait découvert une grotte habitée avec un grand puit en son centre. Elle se souvient vaguement des indications de l’emplacement, elle les transmet à Pimple, qui sait maintenant qu’il doit se diriger vers l’est. L’anecdote dure une éternité aux yeux de Pimple, mais au moins il repart avec un possible indice…",
+    imageUrl: ubal,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:  () => {InfoKnown(infos[3]);
+      return CARDS[15]},
+  },
+
+    15: {
+    numero: 12,
+    nom: "Départ",
+    description: "Pimple se sent maintenant prêt : il a son sac d’aventurier est rempli de noix, de fruits et d’autres grignotines pour la route. Il part sans plus tarder à la recherche des enfants. ",
+    imageUrl: ubal,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[15],
   },
 };
-

@@ -61,7 +61,6 @@
 }
 
 
-
 .objects_pop-up-container {
   display: block;  
   position: fixed;
@@ -92,4 +91,32 @@
   display:block;
   pointer-events: none;
 
+}
+
+.infoModal {            
+  display: none;
+  position: fixed;
+  inset: 0;                   
+  background: rgba(0,0,0,0.4);
+  z-index: 2100;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoModal.show {
+  display: flex;            
+}
+
+.infoPopup {
+  width: min(500px, 90vw);
+  margin: 10vh auto;        
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 5px solid white;
+  color: black;
+  background:#e6dac7;
+  position: absolute;
+  padding: 30px 50px;
+  border-radius: 5px;
+  text-align: center;
 }

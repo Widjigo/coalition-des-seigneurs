@@ -68,7 +68,6 @@
         </div>
       </div>
     </div>
-
     <div class="carte" >
       <div class="d-flex justify-content-center align-items-center h-100">
         <div id="card" class="card shadow overflow-hidden" style="width: 25rem; background-color:#03735f;" draggable="false">
@@ -105,9 +104,24 @@
         </div>
       </div>
 
-    <div class="footer"> <button type="input"> Recommencer la partie </button>
-      <p>bas de page</p>
+    <div class="footer">
+      <button id="infoopen" class="btn btn-outline-dark btn-lg info-btn" style="background-color:#e6dac7"> Mes informations </button>
+      
+      <div class="infoModal">
+        <div class="infoPopup">
+          <div id="informations"></div>
+          <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
+        </div>
+      </div>
+
+      <hr class="my-3 border-dark" /> 
+
+      <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
+      <br>
+      <br>
+      <p class ="mb-0">Projet par Emmanuelle - 2025 </p>
     </div>
+
   <script type="module" src="/src/main.ts" defer></script>
   <script type="module" src="/src/current_card.ts"></script>
 </body>
