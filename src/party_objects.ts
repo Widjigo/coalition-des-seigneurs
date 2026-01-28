@@ -41,6 +41,18 @@ export function addToBag(nouvelobjet: objet) {
     }
  }
 
+let currentAnchorImage: HTMLImageElement | null = null;
+
+// Function to update popup position based on anchor image
+function updatePopupPosition() {
+  if (!currentAnchorImage || isEmptyImage(currentAnchorImage)) return;
+
+  const rect = currentAnchorImage.getBoundingClientRect();
+  const popupWidth = popup.offsetWidth || 400;
+  popup.style.top = rect.top + "px";
+  popup.style.left = (rect.left - popupWidth - 20) + "px";
+}
+
 OpenPopupObject();
 ClosePopupObject();
 
@@ -55,11 +67,9 @@ function OpenPopupObject() {
       const objet = party_objects[slot];
       if (!objet) return;
 
-      const rect = img.getBoundingClientRect();
-      const popupWidth = popup.offsetWidth || 400;
-      popup.style.top = rect.top + window.scrollY + "px";        // below the button
-      popup.style.left = (rect.left + window.scrollX - popupWidth - 20) + "px";         // aligned with left edge
+      currentAnchorImage = img;
       popup.style.position = "absolute";
+      updatePopupPosition();
       modalContainer.classList.add("show");
 
       //show the member info in the pop-up
@@ -72,6 +82,11 @@ function OpenPopupObject() {
 // hide pop-up when mouse leaves image or pop-up
 function ClosePopupObject() {
    objectsContainer.addEventListener("mouseleave", () => {
+    currentAnchorImage = null;
     modalContainer.classList.remove("show");
   })
 };
+
+// Update popup position on scroll and resize to keep it stuck to anchor
+window.addEventListener("scroll", updatePopupPosition);
+window.addEventListener("resize", updatePopupPosition);

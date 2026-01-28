@@ -45,6 +45,17 @@ export function addToParty(member: aventurier) {
     }
  }
 
+let currentAnchorImage: HTMLImageElement | null = null;
+
+// Function to update popup position based on anchor image
+function updatePopupPosition() {
+  if (!currentAnchorImage || isEmptyImage(currentAnchorImage)) return;
+
+  const rect = currentAnchorImage.getBoundingClientRect();
+  popup.style.top = rect.top + "px";
+  popup.style.left = (rect.right + 20) + "px";
+}
+
 OpenPopup();
 ClosePopup();
 
@@ -59,10 +70,9 @@ function OpenPopup() {
       const member = party[slot];
       if (!member) return;
 
-      const rect = img.getBoundingClientRect();
-      popup.style.top = rect.top + window.scrollY + "px";        // below the button
-      popup.style.left = (rect.right + window.scrollX + 20) + "px";         // aligned with left edge
+      currentAnchorImage = img;
       popup.style.position = "absolute";
+      updatePopupPosition();
       modalContainer.classList.add("show");
 
       //show the member info in the pop-up
@@ -88,6 +98,11 @@ function OpenPopup() {
 // hide pop-up when mouse leaves image or pop-up
 function ClosePopup() {
    aventuriersContainer.addEventListener("mouseleave", () => {
+    currentAnchorImage = null;
     modalContainer.classList.remove("show");
   })
 };
+
+// Update popup position on scroll and resize to keep it stuck to anchor
+window.addEventListener("scroll", updatePopupPosition);
+window.addEventListener("resize", updatePopupPosition);

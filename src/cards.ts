@@ -177,7 +177,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Retarder le départ afin de récupérer des témoignages.",
     swipeGauche: () => {
       ajouterJauge(1);
-      CARDS[15]},
+      return CARDS[15]},
     swipeDroite: () => {
       if (infoReceive.some(i => i.numero === 1)) {
         return CARDS[14];
