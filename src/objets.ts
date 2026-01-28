@@ -1,4 +1,6 @@
 import aminata from "./assets/aminata.png";
+import piege from "./assets/piege.png";
+import antitoxin from "./assets/antitoxin.png";
 
 // Type
 export type objet = {
@@ -23,7 +25,7 @@ export const objets: Record<number, objet> = {
   2: {
     id : 2,
     name: "Piège à ours",
-    img: null,
+    img: piege,
     effect: "Immobilise la victime qui marche sur le piège. Les attaques pour le prochain tour font +2 de dégâts",
     bonus: +2,
   },
@@ -31,7 +33,7 @@ export const objets: Record<number, objet> = {
   3: {
     id: 3,
     name: "Antitoxine",
-    img: null,
+    img: antitoxin,
     effect: "Permet de retirer une condition d’empoisonnement.",
     bonus: null,
   },

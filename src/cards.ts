@@ -18,7 +18,11 @@ import pimple_think from "./assets/pimple_think.png";
 import yibap from "./assets/yibap.png";
 import ubal from "./assets/ubal.png";
 import aminata from "./assets/aminata.png";
-
+import bag from "./assets/bag.png";
+import marsyas from "./assets/marsyas.png";
+import marsyas_sleep from "./assets/marsyas_sleep.png";
+import antitoxin from "./assets/antitoxin.png";
+import hallucinogene from "./assets/hallucinogene.png";
 
 // Type
 export type StoryCard = {
@@ -83,7 +87,7 @@ export const CARDS: Record<number, StoryCard> = {
     nom: "Kidnapping",
     description: "La silhouette est effilée, avec une démarche lourde et une cape recouvrant sa tête et son corps. Elle tient un panier grossièrement tressé, à l’intérieur duquel quatre campestries s’agitent. En plissant les yeux, Pimple reconnaît les enfants de Bestir, avec qui il échange un regard dans lequel il lit la peur et la panique. Que doit faire Pimple? ",
     imageUrl: panier,
-    textGauche: "Utiliser une détection de la pensée afin d’obtenir plus ",
+    textGauche: "Utiliser une détection de la pensée afin d’obtenir plus d'informations. ",
     textDroit: "En restant invisible, tenter de reprendre les enfants un à un.",
     swipeGauche: () => CARDS[7],
     swipeDroite: () => CARDS[6],
@@ -147,7 +151,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Yibap lui répond : «N’importe quoi, je dois sauver le village! » et il refuse.",
     swipeGauche:  () => {
       addToParty(aventuriers[2]);
-      return CARDS[11]},
+      return CARDS[12]},
     swipeDroite: () => CARDS[12],
   },
 
@@ -167,7 +171,7 @@ export const CARDS: Record<number, StoryCard> = {
     12: {
     numero: 10,
     nom: "recherche des rumeurs",
-    description: "Prêt à quitter Grovine, Pimple se demande s’il ne devrait pas prendre un peu plus de temps  afin de recueillir les témoignages des autres villageois",
+    description: "Prêt à quitter Grovine, Pimple se demande s’il ne devrait pas prendre un peu plus de temps  afin de recueillir les témoignages des autres villageois.",
     imageUrl: pimple_think,
     textGauche: "La situation presse; pas de temps à perdre à écouter les ragôts.",
     textDroit: "Retarder le départ afin de récupérer des témoignages.",
@@ -186,7 +190,7 @@ export const CARDS: Record<number, StoryCard> = {
     13: {
     numero: 11.1,
     nom: "Ubal et les troglodtytes",
-    description: "Pimple connait bien Ubal, une campestrie appréciant toutes informations se rapprochant de près ou de loin d’une rumeur. Pimple l’aperçoit alors qu’elle accomplit déjà sa mission de commère professionnelle. Il lui demande si elle a une anecdote sur les troglodytes en quelque part dans sa mémoire. Elle raconte alors qu’il y a 10 ans, l’oncle de sa demi-soeur connait un membre de sa famille éloigné ayant été kidnappé par un troglodyte. Celui-ci aurait disparu dans une grotte appelée «La grotte au puit».  L’anecdote dure une éternité aux yeux de Pimple, mais au moins il repart avec un possible indice… ",
+    description: "Pimple connait bien Ubal, une campestrie appréciant toutes informations se rapprochant de près ou de loin d’une rumeur. Pimple l’aperçoit alors qu’elle accomplit déjà sa mission de commère professionnelle. Il lui demande si elle a une anecdote sur les troglodytes en quelque part dans sa mémoire. Elle raconte alors qu’il y a 10 ans, l’oncle de sa demi-soeur connaissait un membre de sa famille éloigné ayant été kidnappé par un troglodyte. Celui-ci aurait disparu dans une grotte appelée «La grotte au puit».  L’anecdote dure une éternité aux yeux de Pimple, mais au moins il repart avec un possible indice… ",
     imageUrl: ubal,
     textGauche: null,
     textDroit: "Continuer",
@@ -203,17 +207,74 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Continuer",
     swipeGauche: null,
     swipeDroite:  () => {InfoKnown(infos[3]);
+      ajouterJauge(1);
       return CARDS[15]},
   },
 
     15: {
     numero: 12,
     nom: "Départ",
-    description: "Pimple se sent maintenant prêt : il a son sac d’aventurier est rempli de noix, de fruits et d’autres grignotines pour la route. Il part sans plus tarder à la recherche des enfants. ",
-    imageUrl: ubal,
+    description: "Pimple se sent maintenant prêt : il a son sac d’aventurier rempli de noix, de fruits et d’autres grignotines pour la route. Il part sans plus tarder à la recherche des enfants. ",
+    imageUrl: bag,
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => CARDS[15],
+    swipeDroite: () => CARDS[16],
   },
+
+    16: {
+    numero: 13,
+    nom: "Voir ou non Marsyas",
+    description: "En quittant la grotte, Pimple constate qu’il n’est probablement pas prêt à affronter le danger qui se profile. Non loin de Grovine, il connait Marsyas, un satyre au caractère festif et au talent singulier : transformer des baies en un liquide enivrant. Pimple se demande s’il devrait le recruter ou s’il serait mieux de poursuivre sa route avec l’espoir de rencontrer d’autres aventuriers en chemin.",
+    imageUrl: marsyas,
+    textGauche: "La situation presse; pas de temps à perdre à réveiller un débauché!",
+    textDroit: "Aller voir Marsyas.",
+    swipeGauche:  () => {
+      ajouterJauge(1);
+      return CARDS[17]},
+    swipeDroite: () => CARDS[17],
+  },
+
+    17: {
+    numero: 14.1,
+    nom: "Vignoble de Marsyas",
+    description: "Après une heure de marche vers la demeure de Marsyas, une odeur acidulée, bien connue de Pimple, pique le nez. Une clairière apparaît au bout du sentier; en son centre, de nombreux barils de bois sont empilés pêle-mêle. Un ronflement vibrant se fait alors entendre près d’un grand bassin rempli à moitié de baies écrasées. À l’origine de ce ronflement, Marsyas dort, dos contre le bassin, le menton reposant sur le goulot d’une bouteille de vin. ",
+    imageUrl: marsyas_sleep,
+    textGauche: "Réveiller Marsyas",
+    textDroit: "Laisser Marsyas dormir, vous doutez qu’il soit utile... ",
+    swipeGauche: () => CARDS[19],
+    swipeDroite: () => CARDS[18],
+  },
+
+    18: {
+    numero: 14.2,
+    nom: "Vignoble de Marsyas",
+    description: "En sortant du vignoble, Pimple se souvient que Maryas possède un cabinet de médecine lui permettant de se remettre plus rapidement de ses maux de tête réguliers. Il ne remarquera probablement pas qu’il lui manque une fiole... ",
+    imageUrl: antitoxin,
+    textGauche: "Réveiller Marsyas",
+    textDroit: "Laisser Marsyas dormir, vous doutez qu’il soit utile... ",
+    swipeGauche: null,
+    swipeDroite: () => {
+      addToBag(objets[3]);
+      return CARDS[18]},
+  },
+
+    19: {
+    numero: 15,
+    nom: "Marsyas comme aventurier",
+    description:  `Pas de le temps d’y aller avec des pincettes : Pimple se met à secouer son vieil ami comme un pantin désarticulé. Marsyas se réveille, confus. 
+                  - Qu’est ce que tu veux, Pimple ? J’ai des bouteilles près du coffre, prends-t-en en une et vient fêter! 
+                  - J’ai plutôt une proposition à te faire afin de préparer une grande fête! Mais avant...des enfants de Grovine ont été kidnappés et nous avons besoin d’aide pour les récupérer. 
+                  - … j’attends la partie festive? 
+                  -  Si nous rapportons les enfants, je suis certains qu’ils nous donnerons en récompense leur fameux champignon aux particularités uniques...et surtout hallocinogènes.Tu sais, celui qu’ils n’ont jamais voulu te donner? 
+                  `,
+    imageUrl: hallucinogene,
+    textGauche: "Péniblement, Marsyas se lève et accepte de vous suivre.",
+    textDroit: "Avec un haussement d’épaules, Matyas gromelle que l’effort ne vaut pas l’hallucination...puis se rendort.",
+    swipeGauche: () => {
+      addToParty(aventuriers[3]);
+      return CARDS[19]},
+    swipeDroite: () => CARDS[19],
+  },
+
 };

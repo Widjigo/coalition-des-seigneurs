@@ -1,5 +1,6 @@
 import pimple_profil from "./assets/pimple_profil.png";
 import yibap_profil from "./assets/yibap_party.png";
+import marsyas_profil from "./assets/marsyas_profil.png";
 
 // Type
 export type aventurier = {
@@ -47,7 +48,7 @@ export const aventuriers: Record<number, aventurier> = {
     id: 3,
     name: "Marsyas",
     hp: 14,
-    img: pimple_profil,
+    img: marsyas_profil,
     attack_type: "Charge de cornes",
     dc: null ,
     attack_bonus: 5,
