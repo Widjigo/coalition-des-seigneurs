@@ -4,6 +4,7 @@ import { InfoKnown, ajouterJauge, infos } from "./informations";
 import { infoReceive } from "./informations";
 import { objets } from "./objets";
 import { addToBag } from "./party_objects";
+import { ForestSearch } from "./current_card";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -23,6 +24,8 @@ import marsyas from "./assets/marsyas.png";
 import marsyas_sleep from "./assets/marsyas_sleep.png";
 import antitoxin from "./assets/antitoxin.png";
 import hallucinogene from "./assets/hallucinogene.png";
+import marcheforet from "./assets/marcheforet.png";
+import marcheforetYibap from "./assets/marcheforetYibap.png";
 
 // Type
 export type StoryCard = {
@@ -231,7 +234,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Aller voir Marsyas.",
     swipeGauche:  () => {
       ajouterJauge(1);
-      return CARDS[17]},
+      return ForestSearch()},
     swipeDroite: () => CARDS[17],
   },
 
@@ -248,15 +251,15 @@ export const CARDS: Record<number, StoryCard> = {
 
     18: {
     numero: 14.2,
-    nom: "Vignoble de Marsyas",
-    description: "En sortant du vignoble, Pimple se souvient que Maryas possède un cabinet de médecine lui permettant de se remettre plus rapidement de ses maux de tête réguliers. Il ne remarquera probablement pas qu’il lui manque une fiole... ",
+    nom: "Antitoxine",
+    description: "En sortant du vignoble, Pimple se souvient que Maryas possède un cabinet de médecine lui permettant de se remettre plus rapidement de ses maux de tête réguliers. Il ne remarquera probablement pas qu’il lui manque une fiole... Il l'a prends et poursuit sa route.",
     imageUrl: antitoxin,
-    textGauche: "Réveiller Marsyas",
-    textDroit: "Laisser Marsyas dormir, vous doutez qu’il soit utile... ",
+    textGauche: null,
+    textDroit: "Continuer ",
     swipeGauche: null,
     swipeDroite: () => {
       addToBag(objets[3]);
-      return CARDS[18]},
+      return ForestSearch()},
   },
 
     19: {
@@ -267,14 +270,70 @@ export const CARDS: Record<number, StoryCard> = {
                   - J’ai plutôt une proposition à te faire afin de préparer une grande fête! Mais avant...des enfants de Grovine ont été kidnappés et nous avons besoin d’aide pour les récupérer. 
                   - … j’attends la partie festive? 
                   -  Si nous rapportons les enfants, je suis certains qu’ils nous donnerons en récompense leur fameux champignon aux particularités uniques...et surtout hallocinogènes.Tu sais, celui qu’ils n’ont jamais voulu te donner? 
+                  Aurez-vous un nouvel allié dans votre quête avant de poursuivre votre route?
                   `,
     imageUrl: hallucinogene,
     textGauche: "Péniblement, Marsyas se lève et accepte de vous suivre.",
     textDroit: "Avec un haussement d’épaules, Matyas gromelle que l’effort ne vaut pas l’hallucination...puis se rendort.",
     swipeGauche: () => {
       addToParty(aventuriers[3]);
-      return CARDS[19]},
-    swipeDroite: () => CARDS[19],
+      return ForestSearch},
+    swipeDroite: () => ForestSearch(),
   },
 
+    20: {
+    numero: 16.1,
+    nom: "Puit et Yibap",
+    description: "Grâce à sa sensibilité à la nature, Yibap repère des signes du passage de la créature. Mêlées aux indications d’Ubal, ces traces vous permettent de vous diriger vers la grotte aux puits sans difficulté. ",
+    imageUrl: marcheforetYibap,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => {
+      ajouterJauge(1);
+      return CARDS[20]},
+  },
+    21: {
+    numero: 16.2,
+    nom: "Puit sans Yibap",
+    description: "Grâce aux indications d’Ubal concernant le possible chemin vers la grotte aux puits, la progression va bon train. Après quelques heures de marche, des traces de pas apparaissent sur le sentier. La grotte semble désormais visible au loin.",
+    imageUrl: marcheforet,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:  () => CARDS[21],
+  },
+
+    22: {
+    numero: 16.3,
+    nom: "Grotte et Yibap",
+    description: "En empruntant ce que vous pensez être le bon chemin, la sensibilité de Yibap à la nature finit par vous être bénéfique. Il repère des signes du passage de la créature, que vous suivez avec assurance. ",
+    imageUrl: marcheforetYibap,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:  () => CARDS[22],
+  },
+  
+    23: {
+    numero: 16.4,
+    nom: "Grotte sans Yibap",
+    description: "Pimple ne sait pas trop comment chercher la grotte... Après quelques heures  à tourner en rond dans la forêt, des traces de pas apparaissent enfin sur le chemin. Vous apercevez une grotte au loin et vous vous dirigez vers cet endroit. ",
+    imageUrl: marcheforet,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:  () => CARDS[23],
+  },
+
+    24: {
+    numero: 16.5,
+    nom: "Chercher dans le vide",
+    description: "Pimple ne sait pas vraiment où aller et doit se reposer sur sa chance légendaire… Il erre pendant de longues heures dans la forêt, tentant de repérer le moindre indice. Finalement, il découvre une piste qu’il espère mener vers les enfants. ",
+    imageUrl: marcheforet,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:  () => CARDS[24],
+  },
 };

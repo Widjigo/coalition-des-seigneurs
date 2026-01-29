@@ -58,7 +58,7 @@ html, body { height: 100%; margin: 0; }
 
 .box-left{
   display: flex;
-  flex-grow: 1;
+  flex-grow: 0;
   flex-direction: column;;
   align-items: center;
   justify-content: center;
@@ -85,7 +85,7 @@ html, body { height: 100%; margin: 0; }
 
 .box-right {
   display: flex;
-  flex-grow: 1;
+  flex-grow: 0;
   flex-direction: column;;
   align-items: center;
   justify-content: center;
@@ -164,6 +164,7 @@ html, body { height: 100%; margin: 0; }
   overflow: hidden;
   padding: 0;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 
@@ -174,6 +175,7 @@ html, body { height: 100%; margin: 0; }
   object-position: center; 
   display: block;
   padding: 0;
+  border-radius: 5px;
 }
 
 .boxJV img[src=""],

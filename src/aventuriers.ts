@@ -7,7 +7,7 @@ export type aventurier = {
   id: number;
   name: string;
   hp: number;
-  img: string;
+  img: string | null;
   attack_type: string;
   dc: number | null;
   attack_bonus: number | null;
@@ -56,4 +56,45 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_bonus: 3,
     ability: "Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
   },
+
+  4: {
+    id: 4,
+    name: "Ours",
+    hp: 25,
+    img: null,
+    attack_type: "Morsure",
+    dc: null ,
+    attack_bonus: +5,
+    attack_dmg_roll: 8,
+    attack_dmg_bonus: 4,
+    ability: "Saute sur sa cible afin de lui lécher le visage et ainsi l’affaiblir.",
+  },
+
+    5: {
+    id: 5,
+    name: "Belch",
+    hp: 7,
+    img: null,
+    attack_type: "Scimitar",
+    dc: null ,
+    attack_bonus: +4,
+    attack_dmg_roll: 6,
+    attack_dmg_bonus: 2,
+    ability: "Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
+  },
+
+  
+    6: {
+    id: 6,
+    name: "Troglodyte",
+    hp: 30,
+    img: null,
+    attack_type: "Coup de griffe",
+    dc: 14 ,
+    attack_bonus: +5,
+    attack_dmg_roll: 6,
+    attack_dmg_bonus: 3,
+    ability: "Souffle au visage empoisonné : Désavantage durant deux tours",
+  },
+
 };
