@@ -5,6 +5,8 @@ import { infoReceive } from "./informations";
 import { objets } from "./objets";
 import { addToBag } from "./party_objects";
 import { ForestSearch } from "./current_card";
+import { bear } from "./current_card";
+import { bearInParty } from "./dice_rolls";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -26,7 +28,11 @@ import antitoxin from "./assets/antitoxin.png";
 import hallucinogene from "./assets/hallucinogene.png";
 import marcheforet from "./assets/marcheforet.png";
 import marcheforetYibap from "./assets/marcheforetYibap.png";
-
+import ours from "./assets/ours.png";
+import ours_profil from "./assets/ours_profil.png";
+import forestcavern from "./assets/forestcavern.png";
+import forestcavernfinger from "./assets/forestcavernfinger.png";
+import piege from "./assets/piege.png";
 // Type
 export type StoryCard = {
   numero: number;
@@ -277,7 +283,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Avec un haussement d’épaules, Matyas gromelle que l’effort ne vaut pas l’hallucination...puis se rendort.",
     swipeGauche: () => {
       addToParty(aventuriers[3]);
-      return ForestSearch},
+      return ForestSearch()},
     swipeDroite: () => ForestSearch(),
   },
 
@@ -291,8 +297,9 @@ export const CARDS: Record<number, StoryCard> = {
     swipeGauche: null,
     swipeDroite: () => {
       ajouterJauge(1);
-      return CARDS[20]},
+      return bear()},
   },
+
     21: {
     numero: 16.2,
     nom: "Puit sans Yibap",
@@ -301,7 +308,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite:  () => CARDS[21],
+    swipeDroite:  bear ,
   },
 
     22: {
@@ -312,7 +319,9 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite:  () => CARDS[22],
+    swipeDroite:  () => {
+      ajouterJauge(1);
+      return bear()},
   },
   
     23: {
@@ -323,7 +332,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite:  () => CARDS[23],
+    swipeDroite:  bear,
   },
 
     24: {
@@ -334,6 +343,86 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite:  () => CARDS[24],
+    swipeDroite:  bear,
+  },
+
+    25: {
+    numero: 17.1,
+    nom: "Trouver l'ours avec Yibap",
+    description: "Durant votre marche, des bruits de feuillage vous inquiètent. Yibap exige le silence et se concentre sur le bruit. À voix basse, il demande à Pimple de sortir des baies de ses poches et de les tendre devant lui, sans bouger.  Quelques minutes passent, puis vous voyez poindre le bout du nez d’un petit ours noir. Yibap conseille alors, toujours à voix basse, d’amadouer l’animal. Il pourrait nous être utile pour la réalisation de la mission...",
+    imageUrl: ours,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite:bearInParty,
+  },
+
+    26: {
+    numero: 17.2,
+    nom: "Trouver l'ouse sans Yibap",
+    description: "En marchant vers la grotte, des bruits de feuillage se font entendre. Quelques minutes passent, puis vous voyez poindre le bout du nez d’ours petit ours noir, inquiet mais affamé. Tentant de ne pas faire de mouvements brusques, Pimple sort des baies de sa poche pour essayer de l’amadouer… Peut-être pourrait-il sortir de cette interaction avec un nouvel aventurier?",
+    imageUrl: ours,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: bearInParty,
+  },
+
+    27: {
+    numero: 17.3,
+    nom: "L'ours dans le party",
+    description: "",
+    imageUrl: ours_profil,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[29],
+  },
+
+    28: {
+    numero: 17.4,
+    nom: "Pas d'ours dans le party",
+    description: "",
+    imageUrl: ours_profil,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[29],
+  },
+
+    29: {
+    numero: 18,
+    nom: "Trouver des objets",
+    description: "La grotte est devant vos yeux et des traces fraîches sont visibles sur le sol. Pimple se demande une dernière fois s’il est prêt ou s’il devrait prendre le temps d’observer son environnement afin de trouver des objets qui pourraient l’aider.",
+    imageUrl: forestcavern,
+    textGauche: "Observer les alentours afin de trouver quelque chose qui pourrait être utile dans votre quête.",
+    textDroit: "Le temps presse, vous n’avez pas le temps de regarder les paquerettes!",
+    swipeGauche: () => CARDS[30],
+    swipeDroite: () => {
+      ajouterJauge(1);
+      return CARDS[31]},
+  },
+    30: {
+    numero: 18.1,
+    nom: "Piege a ours",
+    description: "Près de la grotte, un piège à ours est installé  et armé.  Avec ses petits doigts habiles, Pimple réussi à le désarmer et prêt à être utilisé plus tard.",
+    imageUrl: piege,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => {
+      addToBag(objets[2]);
+      return CARDS[30]},
+  },
+
+    31: {
+    numero: 19,
+    nom: "La rencontre de Belch",
+    description: "En s’approchant de l’entrée,  un Pssstt... Psttt!!!est chuchoté et audible.  À la droite, des doigts verdâtres semblent faire signe d’approcher. ",
+    imageUrl: forestcavernfinger,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[31],
   },
 };

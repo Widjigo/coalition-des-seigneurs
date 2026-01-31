@@ -20,6 +20,7 @@ function updateCard(currentcard) {
     cardText.textContent = currentcard.description;
     choixl.textContent = currentcard.textGauche;
     choixr.textContent = currentcard.textDroit; 
+    console.log(currentcard.numero);
     }
 
 //Afficher la premiere carte 
@@ -91,4 +92,10 @@ export function ForestSearch() {
         }     
     else {
         return CARDS[24]}
+}
+
+
+export function bear() {
+    const yibap = aventuriers[2];
+    return Object.values(party).includes(yibap) ? CARDS[25] : CARDS[26];
 }
