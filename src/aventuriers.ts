@@ -2,6 +2,7 @@ import pimple_profil from "./assets/pimple_profil.png";
 import yibap_profil from "./assets/yibap_party.png";
 import marsyas_profil from "./assets/marsyas_profil.png";
 import ours_profil from "./assets/ours_profil.png";
+import belch_profil from "./assets/belch_profil.png";
 
 // Type
 export type aventurier = {
@@ -25,7 +26,7 @@ export const aventuriers: Record<number, aventurier> = {
     hp: 17,
     attack_type: "Fouet d'eau",
     img: pimple_profil,
-    dc: null, 
+    dc: 12, 
     attack_bonus: 4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
@@ -51,7 +52,7 @@ export const aventuriers: Record<number, aventurier> = {
     hp: 14,
     img: marsyas_profil,
     attack_type: "Charge de cornes",
-    dc: null ,
+    dc: 11 ,
     attack_bonus: 5,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
@@ -64,7 +65,7 @@ export const aventuriers: Record<number, aventurier> = {
     hp: 25,
     img: ours_profil,
     attack_type: "Morsure",
-    dc: null ,
+    dc: 13 ,
     attack_bonus: +5,
     attack_dmg_roll: 8,
     attack_dmg_bonus: 4,
@@ -75,9 +76,9 @@ export const aventuriers: Record<number, aventurier> = {
     id: 5,
     name: "Belch",
     hp: 7,
-    img: null,
+    img: belch_profil,
     attack_type: "Scimitar",
-    dc: null ,
+    dc: 12 ,
     attack_bonus: +4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,

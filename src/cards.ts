@@ -7,6 +7,7 @@ import { addToBag } from "./party_objects";
 import { ForestSearch } from "./current_card";
 import { bear } from "./current_card";
 import { bearInParty } from "./dice_rolls";
+import { belchInParty } from "./dice_rolls";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -33,6 +34,13 @@ import ours_profil from "./assets/ours_profil.png";
 import forestcavern from "./assets/forestcavern.png";
 import forestcavernfinger from "./assets/forestcavernfinger.png";
 import piege from "./assets/piege.png";
+import belch from "./assets/belch.png";
+import interiorcave from "./assets/interiorcave.png";
+import belch_pensee from "./assets/belch_pensee.png";
+import bouclier from "./assets/bouclier.png";
+import debutquete from "./assets/debutquete.png";
+import scimetar_belch from "./assets/scimetar_belch.png";
+
 // Type
 export type StoryCard = {
   numero: number;
@@ -412,7 +420,7 @@ export const CARDS: Record<number, StoryCard> = {
     swipeGauche: null,
     swipeDroite: () => {
       addToBag(objets[2]);
-      return CARDS[30]},
+      return CARDS[31]},
   },
 
     31: {
@@ -424,5 +432,99 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Continuer",
     swipeGauche: null,
     swipeDroite: () => CARDS[31],
+  },
+
+    32: {
+    numero: 20,
+    nom: "Invitation",
+    description: "En s’approchant, un jeune gobelin se montre et continue à vous faire signe d’approcher, tout en  s’éloignant de l’entrée de la grotte.",
+    imageUrl: belch,
+    textGauche: "Pimple lit dans les pensées du gobelin.",
+    textDroit: "Suivre le gobelin.",
+    swipeGauche: () => CARDS[34],
+    swipeDroite: () => CARDS[33],
+  },
+
+    33: {
+    numero: 21.1,
+    nom: "Chez Belch",
+    description: "Le gobelin se présente comme étant Belch. Il vit derrière la grotte, dans une petite crique camouflée aux yeux de ceux qui ne la chercheraient pas. Vous entrez dans sa demeure, garnie de peu d’objets: un feu, un balais de paille, un cimeterre et de l’équipement de cuisson rudimentaire. Au fond, une paillasse faite de branches et de feuillage est soigneusement délimitée. Rien ne semble sortir de l’ordinaire, sauf pour ce qui ne se voit pas : l’odeur de la grotte, imprégnée de l’odeur de la sauge, de même qu’une propreté inhabituelle pour tous les habitants de la forêt. ",
+    imageUrl: interiorcave,
+    textGauche: null,
+    textDroit: "Continuer",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[35],
+  },
+
+    34: {
+    numero: 21.2,
+    nom: "Pensee de Belch",
+    description: "« Stupide. Stupide. Stupide. Aller dans la grotte pour se faire manger! Convaincre pas aller chez voisin puant et dérangeant!» ",
+    imageUrl: belch_pensee,
+    textGauche: "Le temps presse!  Pas le temps de se faire convaincre de quoi que ce soit.",
+    textDroit: "Suivre le gobelin.",
+    swipeGauche: () => {
+      ajouterJauge(1);
+      return CARDS[35]},
+    swipeDroite: () => CARDS[35],
+  },
+
+    35: {
+    numero: 22,
+    nom: "Discussion Belch",
+    description: `D’un ton acrimonieux, Belch explique, qu’il n’en peut plus de supporter son voisin qui ne se ramasse jamais et laisse ses déchets partout autours de la grotte. Et il ne parle même pas de l’odeur! Cette stupide bestiole cuisine comme un pied, en plus de ne jamais se laver… 
+                  Après s’être essoufflé de son verbiage unilatéral, il mentionne qu’il voulait surtout vous avertir de ne pas approcher de la grotte. La créature qui s’y trouve, en plus d’être puante, est violente et dangereuse.  
+                  Pimple attend la fin du discours de Belch pour lui répondre...`,
+    imageUrl: interiorcave,
+    textGauche: "Pimple tente de convaincre Belch de se joindre à lui afin d’éliminer ensemble cette nuisance malodorante.",
+    textDroit: "Pimple dit à Belch qu’il connaît le danger, mais qu’il doit entrer dans la grotte pour sauver des enfants sans défense.",
+    swipeGauche: belchInParty,
+    swipeDroite: () => CARDS[36],
+  },
+
+    36: {
+    numero: 23.1,
+    nom: "Bouclier",
+    description: "Belch gromelle sa désapprobation en goblinoïde. Il se lève et se dirige vers sa paillasse, où il fouille quelques instants.  De sous plusieurs couches de pailles. il sort un petit bouclier en bois clouté et vous le tend. Il vous dit que c’est afin d’éviter « que vous ne mourriez trop vite ».",
+    imageUrl: bouclier,
+    textGauche: null,
+    textDroit: "Bouclier en main, il est temps de partir.",
+    swipeGauche:null,
+    swipeDroite: () => CARDS[39],
+  },
+
+    37: {
+    numero: 23.2,
+    nom: "Belch dans le party",
+    description: `Vous avez roulé X sur un dé 20 et vous deviez obtenir au moins X pour que Belch accepte de vous rejoindre.
+                  Belch gromelle sa désapprobation en goblinoïde. il soupire, se lève, puis vous lance qu’il vaut mieux se débarrasser de la vermine avant le dîner pour éviter de se battre le ventre plein. `,
+    imageUrl: scimetar_belch,
+    textGauche: null,
+    textDroit: "Il prend son cimeterre près de la porte d’entrée et vous vous dirigez vers l’entrée de la grotte.",
+    swipeGauche: null,
+    swipeDroite: () => CARDS[39],
+  },
+
+    38: {
+    numero: 23.3,
+    nom: "Refus Belch",
+    description: `Vous avez roulé X sur un dé 20 et vous deviez obtenir au moins X pour que Belch accepte de vous rejoindre. 
+                  Découragé, Belch répond qu’il doit cuisiner le souper plutôt que mourir inutilement. Toutefois, il se lève et se dirige vers sa paillasse, où il fouille quelques instants.  De sous plusieurs couches de pailles. il sort un petit bouclier en bois clouté et vous le tend. Il vous dit que c’est afin d’éviter « que vous ne mourriez trop vite ».`,
+    imageUrl: bouclier,
+    textGauche: null,
+    textDroit: "Bouclier en main, il est temps de partir. ",
+    swipeGauche:null,
+    swipeDroite: () => CARDS[39],
+  },
+
+    39: {
+    numero: 24,
+    nom: "La fin",
+    description: `Le moment est venu d’entrer dans la grotte pour secourir les enfants campestries. `,
+    imageUrl: debutquete,
+    textGauche: null,
+    textDroit: "Entrez! ",
+    swipeGauche:null,
+    swipeDroite: () => CARDS[39],
   },
 };
