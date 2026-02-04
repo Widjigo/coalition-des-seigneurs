@@ -431,7 +431,7 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Continuer",
     swipeGauche: null,
-    swipeDroite: () => CARDS[31],
+    swipeDroite: () => CARDS[32],
   },
 
     32: {
@@ -465,7 +465,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Suivre le gobelin.",
     swipeGauche: () => {
       ajouterJauge(1);
-      return CARDS[35]},
+      return CARDS[38]},
     swipeDroite: () => CARDS[35],
   },
 
@@ -490,7 +490,9 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Bouclier en main, il est temps de partir.",
     swipeGauche:null,
-    swipeDroite: () => CARDS[39],
+    swipeDroite: () => {
+      addToBag(objets[4]);
+      return CARDS[39]},
   },
 
     37: {
@@ -514,7 +516,9 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Bouclier en main, il est temps de partir. ",
     swipeGauche:null,
-    swipeDroite: () => CARDS[39],
+    swipeDroite: () => {
+      addToBag(objets[4]);
+      return CARDS[39]},
   },
 
     39: {

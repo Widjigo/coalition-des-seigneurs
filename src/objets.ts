@@ -1,6 +1,7 @@
 import aminata from "./assets/aminata.png";
 import piege from "./assets/piege.png";
 import antitoxin from "./assets/antitoxin.png";
+import bouclier from "./assets/bouclier.png";
 
 // Type
 export type objet = {
@@ -37,6 +38,15 @@ export const objets: Record<number, objet> = {
     effect: "Permet de retirer une condition d’empoisonnement.",
     bonus: null,
   },
+
+    4: {
+    id: 4,
+    name: "Bouclier",
+    img: bouclier,
+    effect: "Ajoute +2 à la défense d'un aventurier",
+    bonus: +2,
+  },
+  
 
 };
 
