@@ -49,4 +49,5 @@ infoClose.addEventListener("click", () => {
 const newGame = document.getElementById("newGame");
 newGame.addEventListener("click", function() {
   location.reload();
+  localStorage.clear();
 });

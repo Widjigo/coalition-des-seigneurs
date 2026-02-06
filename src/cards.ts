@@ -8,6 +8,7 @@ import { ForestSearch } from "./current_card";
 import { bear } from "./current_card";
 import { bearInParty } from "./dice_rolls";
 import { belchInParty } from "./dice_rolls";
+import { transition } from "./transition";
 
 //images importa
 import grovine from "./assets/grovine.png";
@@ -465,7 +466,7 @@ export const CARDS: Record<number, StoryCard> = {
     textDroit: "Suivre le gobelin.",
     swipeGauche: () => {
       ajouterJauge(1);
-      return CARDS[38]},
+      return CARDS[39]},
     swipeDroite: () => CARDS[35],
   },
 
@@ -529,6 +530,6 @@ export const CARDS: Record<number, StoryCard> = {
     textGauche: null,
     textDroit: "Entrez! ",
     swipeGauche:null,
-    swipeDroite: () => CARDS[39],
+    swipeDroite: () => { transition() ; return CARDS[39]; },
   },
 };

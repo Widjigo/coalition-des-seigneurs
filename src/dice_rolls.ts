@@ -6,7 +6,7 @@ import { CARDS } from "./cards";
 export function bearInParty() {
     const yibap = aventuriers[2];
     const bear = aventuriers[4];
-    let rollbear = Math.floor(Math.random() * 20) + 1;
+    let rollbear = Math.floor(Math.random() * 19) + 1;
     const yibapInParty = Object.values(party).includes(yibap);
     const neededbear = yibapInParty ? 8 : 11;
     
@@ -29,7 +29,7 @@ export function bearInParty() {
 
 
 export function belchInParty() {
-    let rollbelch = Math.floor(Math.random() * 20) + 1;
+    let rollbelch = Math.floor(Math.random() * 19) + 1;
     const bealch = aventuriers[5];
     const neededbelch = 10;
     
@@ -51,3 +51,4 @@ export function belchInParty() {
         };
     }
 }
+
