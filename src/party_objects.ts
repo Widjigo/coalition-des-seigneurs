@@ -81,10 +81,12 @@ function OpenPopupObject() {
 
 // hide pop-up when mouse leaves image or pop-up
 function ClosePopupObject() {
-   objectsContainer.addEventListener("mouseleave", () => {
-    currentAnchorImage = null;
-    modalContainer.classList.remove("show");
-  })
+   if (objectsContainer) {
+     objectsContainer.addEventListener("mouseleave", () => {
+      currentAnchorImage = null;
+      modalContainer.classList.remove("show");
+    })
+   }
 };
 
 // Update popup position on scroll and resize to keep it stuck to anchor

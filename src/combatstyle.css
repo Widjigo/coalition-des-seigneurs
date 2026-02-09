@@ -1,0 +1,204 @@
+
+html, body { height: 100%; margin: 0; }
+
+.layout {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "aventuriers combat objets "
+        "footer footer footer ";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 3px;
+    background-color: #e6dac7;
+    padding: 5px;
+    min-height:100svh;
+}
+
+.aventuriers, .combat, .objets {
+  min-height: 0; 
+}
+
+.layout div {
+  padding: 10px;
+  min-width: 0;
+}
+
+.layout div.header {
+  grid-area: header;
+  text-align: left;
+  background-color: #e6dac7;
+  background-size: auto 100%;
+}
+
+.header {
+  background-image: url('/assets/background-head.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.title{
+  text-align: left;
+}
+
+.info-btn {
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  align-items:flex-end;
+}
+
+.layout div.aventuriers {
+  grid-area: aventuriers;
+  display: flex;
+}
+
+.box-left{
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;;
+  align-items: center;
+  justify-content: center;
+}
+
+.box{
+  background-color: #03735f;
+  border: 5px #03735f;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 10px;
+  width: 150px;      /* your chosen size */
+  height: 150px;     
+  overflow: hidden; /* hides anything outside */
+}
+
+.box img {
+  max-width: 100%;
+  max-height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.box-right {
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-txt{
+  writing-mode:vertical-lr;
+  transform: rotate(180deg);
+}
+
+.vertical-txt-right{
+  writing-mode:vertical-lr;
+  text-orientation:sideways;
+}
+
+.layout div.objets {
+  grid-area: objets;
+  display: flex;
+}
+
+.layout div.footer {
+  grid-area: footer;
+  text-align: center;  
+}
+
+.containerJV {
+  display: flex;         
+  align-items: center;   
+  height: auto;
+  margin-top: 10px;
+  gap: 10px;  
+  justify-content: center;    
+  padding: 0; 
+  margin-bottom: 10px;
+}
+
+  .layout div.combat{
+  grid-area: combat;
+  display: grid;
+  grid-template-rows: auto 1fr; 
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+  
+}
+
+.combat div.general-combat {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+  gap: 12px;
+  height: 100%;
+}
+
+.combat .fixed-box{    
+  display: flex;
+  flex-direction: column;   
+  gap: 12px;
+  border: 3px solid white;
+  background: #03735f;
+  border-radius: 10px;
+  padding: 10px;
+  width: min(90%, 320px);
+  height: 500px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-inline: auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+}
+
+.combat .fixed-box .img-left {
+ flex: 0 0 250px;          
+ height: 250px;            /* example */
+ overflow: hidden;
+ border-radius: 10px;
+}
+
+.combat .fixed-box .img-left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; 
+  display: block;
+}
+
+.combat .fixed-box .info-right {
+  flex: 1;                 /* take remaining space */
+  color: rgb(255, 255, 255);
+}
+
+.combat .info-line {
+  display: flex;
+  justify-content: space-between; 
+}
+.combat .combat-content{
+  border: 3px solid #03735f;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  width: min(90%, 320px);
+  height: 300px;
+  box-sizing: border-box; 
+  overflow: hidden;       /* or auto / scroll */
+  margin-inline: auto;    /* center horizontally */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+

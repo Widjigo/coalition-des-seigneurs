@@ -5,6 +5,7 @@ import { setupSwipe} from "./swipehandler";
 import leftArrowUrl from "./assets/left.png";
 import rightArrowUrl from "./assets/right.png";
 import bagkgroundHeadUrl from "./assets/background-head.png";
+
 (document.querySelector(".left-choice .imgArrow") as HTMLImageElement).src = leftArrowUrl;
 (document.querySelector(".right-choice .imgArrow") as HTMLImageElement).src = rightArrowUrl;
 (document.querySelector(".layout div.header") as HTMLDivElement).style.backgroundImage = `url(${bagkgroundHeadUrl})`;
@@ -50,4 +51,5 @@ const newGame = document.getElementById("newGame");
 newGame.addEventListener("click", function() {
   location.reload();
   localStorage.clear();
+  window.location.href = "/src/index.html"
 });

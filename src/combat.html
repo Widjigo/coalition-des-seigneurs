@@ -1,56 +1,69 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="/src/style.css">
-    <link rel="stylesheet" href="/src/pop-up_view.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>combat</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/combatstyle.css">
+  <link rel="stylesheet" href="/src/pop-up_view.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>combat</title>
+</head>
 
 <body>
-    <div class="pop-up-container">
-      <div class="pop-up">
-        <p>Text here</p>
-        <button class="btn btn-light close-btn" id="howtoplayclose"> Fermer </button>
-       </div>
+  <div class="pop-up-container">
+    <div class="pop-up">
+      <p>Text here</p>
+      <button class="btn btn-light close-btn" id="howtoplayclose"> Fermer </button>
     </div>
+  </div>
 
-    <div class="party_pop-up-container">
-      <div class="party_pop-up">
-        <h3 id="name_member"></h3>
-        <b>Points de vie: </b><p id="hp"></p>
-        <b>Attaque:</b><p id="attack"></p>
-        <div id="dmgRow"><b>Dégâts:</b><p id="dmg"></p></div>
-        <b>Habileté spéciale :</b><p id="special"></p>
-        <b>Statut:</b><p id="statut"></p>
-       </div>
+  <div class="party_pop-up-container">
+    <div class="party_pop-up">
+      <h3 id="name_member"></h3>
+      <b>Points de vie: </b>
+      <p id="hp"></p>
+      <b>Attaque:</b>
+      <p id="attack"></p>
+      <b>DC:</b>
+      <p id="dc"></p>
+      <div id="dmgRow"><b>Dégâts:</b>
+        <p id="dmg"></p>
+      </div>
+      <b>Habileté spéciale :</b>
+      <p id="special"></p>
+      <b>Statut:</b>
+      <p id="statut"></p>
     </div>
+  </div>
 
-    <div class="objects_pop-up-container">
-      <div class="objects_pop-up">
-        <h3 id="name"></h3>
-        <b>Effet: </b><p id="effect"></p>
-       </div>
+  <div class="objects_pop-up-container">
+    <div class="objects_pop-up">
+      <h3 id="name"></h3>
+      <b>Effet: </b>
+      <p id="effect"></p>
     </div>
+  </div>
 
   <div class="layout">
     <div class="header">
       <div class="header-inner">
         <div class=title>
-          <h3 class="justify-content-center" style="color:#03735f" > SPORES ET DISPARITIONS </h3>
+          <h3 class="justify-content-center" style="color:#03735f"> SPORES ET DISPARITIONS </h3>
         </div>
-        <button id="howtoplayopen" class="btn btn-outline-dark btn-lg info-btn" style="background-color:#e6dac7"> Comment jouer ? </button>
-        </div>
+        <button id="howtoplayopen" class="btn btn-outline-dark btn-lg info-btn" style="background-color:#e6dac7">
+          Comment jouer ? </button>
+      </div>
     </div>
 
     <div class="aventuriers">
       <div class="vertical-txt">
-        <h1  class="mb-1" style="text-align: center ; color:#03735f">Aventuriers</h1>
+        <h1 class="mb-1" style="text-align: center ; color:#03735f">Aventuriers</h1>
       </div>
       <div class="box-left">
         <div class="box" id="member1id">
@@ -67,48 +80,72 @@
         </div>
       </div>
     </div>
-    <div class="carte" >
-      <div style="background-color:aliceblue">
 
-      </div>
-    </div>
+    <div class="combat">
+      <div class="general-combat">
 
-    <div class="objets">
-      <div class="box-right">
-          <div class="box" id="object1id">
-            <img id="object1" src="">
+        <div class="fixed-box">
+          <div class="img-left"><img class="imgtroglo" src="assets/Troglo_finale.png" alt="troglodyteMonster"></div>
+          <div class="info-right">
+          <div class="info-line"><b>Points de vie:</b> <span id="hpTroglo"></span><b>     DC:</b> <span id="dcTroglo"></span>
           </div>
-          <div class="box" id="object2id">
-            <img id="object2" src="">
+          <div><b>Statut:</b> <span id="statutTroglo"></span></div>
+          <div><b>Attaque:</b> <span id="attacktroglo"></span></div>
+          <div id="dmgRowTroglo">
+            <b>Dégâts:</b> <span id="dmgTroglo"></span>
           </div>
-          <div class="box" id="object3id">
-            <img id="object3" src="">
-          </div>
-          <div class="box" id="object4id">
-            <img id="object4" src="">
-          </div>
-          </div>
-        <div class="vertical-txt-right">
-          <h1  class="mb-1" style="text-align: center ; color:#03735f"> Objets </h1>
+
+          <div><b>Habileté spéciale :</b> <span id="specialTroglo"></span></div>
         </div>
       </div>
 
-    <div class="footer"> 
-      <div class="infoModal">
-        <div class="infoPopup">
-          <div id="informations"></div>
-          <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
-        </div>
+      <div class="combat-content">
+      <div> <h4>Personnage en action : </h4> <span id="CurrentPlayer"></span></div>
+      <div> <b> Abilete </b> <span id="CurrentPlayer"></span></div>
       </div>
 
-      <hr class="my-3 border-dark" /> 
+    </div>
+  </div>
 
-      <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
-      <br>
-      <br>
-      <p class ="mb-0">Projet par Emmanuelle - 2025 </p>
+  <div class="objets">
+    <div class="box-right">
+      <div class="box" id="object1id">
+        <img id="object1" src="">
+      </div>
+      <div class="box" id="object2id">
+        <img id="object2" src="">
+      </div>
+      <div class="box" id="object3id">
+        <img id="object3" src="">
+      </div>
+      <div class="box" id="object4id">
+        <img id="object4" src="">
+      </div>
     </div>
+    <div class="vertical-txt-right">
+      <h1 class="mb-1" style="text-align: center ; color:#03735f"> Objets </h1>
     </div>
-    <script type="module" src="/src/combat.ts"></script>
+  </div>
+
+  <div class="footer">
+    <div class="infoModal">
+      <div class="infoPopup">
+        <div id="informations"></div>
+        <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
+      </div>
+    </div>
+
+    <hr class="my-3 border-dark" />
+
+    <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
+    <br>
+    <br>
+    <p class="mb-0">Projet par Emmanuelle - 2025 </p>
+  </div>
+  </div>
+  <script type="module" src="/src/combat.ts"></script>
+  <script type="module" src="/src/combat_pop-up.ts"></script>
+
 </body>
+
 </html>

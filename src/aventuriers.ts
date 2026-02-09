@@ -16,6 +16,7 @@ export type aventurier = {
   attack_dmg_roll: number| null;
   attack_dmg_bonus: number| null;
   ability: string;
+  statut: string | null;
 };
 
 // aventuriers
@@ -31,6 +32,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
     ability: "Lancer le sortilège «Lire les pensées»",
+    statut : "vivant",
   },
 
   2: {
@@ -44,6 +46,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: null,
     attack_dmg_bonus: null,
     ability: "Sensibilité aiguë à la nature et à son environnement.",
+    statut : "vivant",
   },
 
   3: {
@@ -57,6 +60,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
+    statut : "vivant",
   },
 
   4: {
@@ -70,6 +74,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 8,
     attack_dmg_bonus: 4,
     ability: "Saute sur sa cible afin de lui lécher le visage et ainsi l’affaiblir.",
+    statut : "vivant",
   },
 
     5: {
@@ -83,6 +88,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
     ability: "Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
+    statut : "vivant",
   },
 
   
@@ -97,6 +103,6 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Souffle au visage empoisonné : Désavantage durant un tour",
+    statut : "vivant",
   },
-
 };

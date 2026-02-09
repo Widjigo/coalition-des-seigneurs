@@ -3,10 +3,25 @@ import { addToParty } from "./party";
 import { aventuriers} from "./aventuriers";
 import { CARDS } from "./cards";
 
+
+export function rollDice(sides: number): number { 
+    return Math.floor(Math.random() * sides) + 1;
+ }
+
+ export function rollAdvantage(sides:number): number {
+    let roll1 = Math.floor(Math.random() * sides) + 1;
+    let roll2 = Math.floor(Math.random() * sides) + 1;
+    if (roll1 <= roll2) {
+        return roll2;
+    } else {
+        return roll1;
+    }
+ }
+
 export function bearInParty() {
     const yibap = aventuriers[2];
     const bear = aventuriers[4];
-    let rollbear = Math.floor(Math.random() * 19) + 1;
+    let rollbear = rollDice(20);
     const yibapInParty = Object.values(party).includes(yibap);
     const neededbear = yibapInParty ? 8 : 11;
     
@@ -27,9 +42,8 @@ export function bearInParty() {
     }
 }
 
-
 export function belchInParty() {
-    let rollbelch = Math.floor(Math.random() * 19) + 1;
+    let rollbelch = rollDice(20);
     const bealch = aventuriers[5];
     const neededbelch = 10;
     
