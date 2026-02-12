@@ -25,14 +25,14 @@ export const aventuriers: Record<number, aventurier> = {
     id: 1,
     name: "Pimple",
     hp: 17,
-    attack_type: "Fouet d'eau",
+    attack_type: "Fouet d'eau.",
     img: pimple_profil,
     dc: 12, 
     attack_bonus: 4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
     ability: "Lancer le sortilège «Lire les pensées»",
-    statut : "vivant",
+    statut : "Inconscient",
   },
 
   2: {
@@ -40,13 +40,13 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Yibap",
     hp: 4,
     img: yibap_profil,
-    attack_type: "Nuage de spores\n Sur un 10 et -, la créature est étouffée et incapable d'attaquer durant un tour",
+    attack_type: "Nuage de spores.\n Sur un 10 et -, la créature est étouffée et incapable d'attaquer durant un tour",
     dc: 10,
     attack_bonus: null ,
     attack_dmg_roll: null,
     attack_dmg_bonus: null,
     ability: "Sensibilité aiguë à la nature et à son environnement.",
-    statut : "vivant",
+    statut : "Vivant"
   },
 
   3: {
@@ -54,13 +54,13 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Marsyas",
     hp: 14,
     img: marsyas_profil,
-    attack_type: "Charge de cornes",
+    attack_type: "Charge de cornes.",
     dc: 11 ,
     attack_bonus: 5,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
-    statut : "vivant",
+    statut : "Vivant"
   },
 
   4: {
@@ -68,13 +68,13 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Ours",
     hp: 25,
     img: ours_profil,
-    attack_type: "Morsure",
+    attack_type: "Morsure.",
     dc: 13 ,
     attack_bonus: 5,
     attack_dmg_roll: 8,
     attack_dmg_bonus: 4,
     ability: "Saute sur sa cible afin de lui lécher le visage et ainsi l’affaiblir.",
-    statut : "vivant",
+    statut : "Vivant"
   },
 
     5: {
@@ -82,13 +82,13 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Belch",
     hp: 7,
     img: belch_profil,
-    attack_type: "Scimitar",
+    attack_type: "Scimitar.",
     dc: 12 ,
     attack_bonus: 4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
     ability: "Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
-    statut : "vivant",
+    statut : "Vivant"
   },
 
   
@@ -97,12 +97,12 @@ export const aventuriers: Record<number, aventurier> = {
     name: "Troglodyte",
     hp: 30,
     img: null,
-    attack_type: "Coup de griffe",
+    attack_type: "Coup de griffe.",
     dc: 14 ,
     attack_bonus: 5,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Souffle au visage empoisonné : Désavantage durant un tour",
-    statut : "vivant",
+    statut : "Vivant"
   },
 };

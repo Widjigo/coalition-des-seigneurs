@@ -38,12 +38,12 @@ function isEmptyImage(imgElement: HTMLImageElement | null): boolean {
 }
 
 function showParty(party:Record<number, aventurier>, memberImages: HTMLImageElement[]) {
-  for (let i = 0; i < memberImages.length; i++) {
+  const MAX = 4
+  for (let i = 0; i < MAX; i++) {
     const imgElement = memberImages[i];
-    const member = party[i+1]; // party member at same index
+    const member = party[i]; 
 
     if (!member) {
-
       // no member for this slot -> clear
       imgElement.removeAttribute("src");
       continue;
@@ -87,7 +87,7 @@ function OpenPopupCharacter() {
       if (isEmptyImage(img)) return;
 
       //wich slot is this image?
-      const slot = index + 1;
+      const slot = index;
       const member = party[slot];
       if (!member) return;
 

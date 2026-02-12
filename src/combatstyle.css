@@ -116,17 +116,6 @@ html, body { height: 100%; margin: 0; }
   text-align: center;  
 }
 
-.containerJV {
-  display: flex;         
-  align-items: center;   
-  height: auto;
-  margin-top: 10px;
-  gap: 10px;  
-  justify-content: center;    
-  padding: 0; 
-  margin-bottom: 10px;
-}
-
   .layout div.combat{
   grid-area: combat;
   display: grid;
@@ -193,7 +182,7 @@ html, body { height: 100%; margin: 0; }
   background: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 10px;
-  width: min(90%, 320px);
+  width: min(90%, 750px);
   height: 300px;
   box-sizing: border-box; 
   overflow: hidden;       /* or auto / scroll */
@@ -201,4 +190,41 @@ html, body { height: 100%; margin: 0; }
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
+::backdrop {
+  backdrop-filter: blur(3px);
+}
 
+[popover] {
+  inset: unset;
+  position: absolute;
+  bottom: calc(anchor(top) + 20px);
+  justify-self: anchor-center;
+  margin: 0;
+  width: 600px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  background: #e6dac7;
+  box-shadow: 1px 1px 3px #ada597;
+  border: none;
+}
+
+
+#usersTable {
+  --bs-table-bg: #03735f;        /* table background */
+  --bs-table-color: #ffffff;    /* text color */
+  --bs-table-border-color: #025a4a;
+}
+
+#usersTable thead {
+  --bs-table-bg: #025a4a;        /* header background */
+  --bs-table-color: #ffffff;
+}
+
+#usersTable tbody tr:nth-child(even) {
+  --bs-table-bg: #049a7d;        /* striped rows */
+}
+
+.combat-content > div {
+  padding: 0 !important;
+}

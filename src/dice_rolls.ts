@@ -24,7 +24,7 @@ export function bearInParty() {
     let rollbear = rollDice(20);
     const yibapInParty = Object.values(party).includes(yibap);
     const neededbear = yibapInParty ? 8 : 11;
-    
+
     console.log("Bear roll:", rollbear, "| needed:", neededbear, "| yibapInParty:", yibapInParty);
     if (rollbear >= neededbear) {
         addToParty(bear);
@@ -46,9 +46,24 @@ export function belchInParty() {
     let rollbelch = rollDice(20);
     const bealch = aventuriers[5];
     const neededbelch = 10;
-    
+
+    //is party full? 
+    const MAX = 4;
+    let count = 0 ;
+    for (let i=0; i<MAX; i++){
+      if (party[i]) count++;
+      }
+        
     console.log("Bealch", rollbelch, "| needed:", neededbelch);
-    if (rollbelch >= neededbelch) {
+    if (rollbelch >= neededbelch || count == 4 ) {;
+        console.log("Party full");
+        return {
+        ...CARDS[38],
+        description: `Vous avez roulé ${rollbelch} sur un dé 20 et vous deviez obtenir au moins ${neededbelch} pour que Belch accepte de vous rejoindre. Cependant, Belch vous regarde et considère que vous êtes 
+                    déjà trop pour une petite grotte et qu'il serait une nuisance pour vous.  Toutefois, il se lève et se dirige vers sa paillasse, où il fouille quelques instants.  De sous plusieurs couches de pailles. il sort un petit bouclier en bois clouté et vous le tend. Il vous dit que c’est afin d’éviter « que vous ne mourriez trop vite `,
+        };
+    } 
+    else if (rollbelch >= neededbelch) {
         addToParty(bealch);
         console.log("Bealch added to party!");
         return {
@@ -56,7 +71,7 @@ export function belchInParty() {
         description: `Vous avez roulé ${rollbelch} sur un dé 20 et vous deviez obtenir au moins ${neededbelch} pour que Belch accepte de vous rejoindre.
                     Belch gromelle sa désapprobation en goblinoïde. il soupire, se lève, puis vous lance qu’il vaut mieux se débarrasser de la vermine avant le dîner pour éviter de se battre le ventre plein. `,
         };
-    } else {
+        }else {
         console.log("Belch NOT added.");
         return {
         ...CARDS[38],

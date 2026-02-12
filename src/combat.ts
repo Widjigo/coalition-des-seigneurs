@@ -1,9 +1,10 @@
 import {loadData } from "./transition";
 import {aventuriers} from "./aventuriers"
-
+import {initiativeTour} from "./initiative"
 import bagkgroundHeadUrl from "./assets/background-head.png";
+import { generateTable } from "./initiative";
+import { CurrentTurn, ShowTurn } from "./AttackTurn";
 (document.querySelector(".layout div.header") as HTMLDivElement).style.backgroundImage = `url(${bagkgroundHeadUrl})`;
-
 
 //Troglodytes_info
 const hpTroglo = document.getElementById("hpTroglo") as HTMLElement;
@@ -13,9 +14,51 @@ const dmgRowTroglo= document.getElementById("dmgRowTroglo") as HTMLElement;
 const dmgTroglo = document.getElementById("dmgTroglo") as HTMLElement;
 const specialTroglo = document.getElementById("specialTroglo") as HTMLElement;
 const statutTroglo = document.getElementById("statutTroglo") as HTMLElement;
+const popover = document.getElementById("mypopover");
 
-loadData();
+// Loading the page 
 UpDateTroglo();
+loadDataWithInitiavive();
+
+let tableGenerated = false;
+popover.addEventListener("toggle", () => {
+  if (tableGenerated)return ;
+  generateTable(initiativeTour);
+  tableGenerated = true;
+});
+
+//Attack tour 
+const turnbtn = document.getElementById("turnbtn");
+let turnNumber = 0;
+ShowTurn(initiativeTour, turnNumber, aventuriers);
+
+turnbtn.addEventListener("click", () => {
+  const newTurn = CurrentTurn(initiativeTour, turnNumber, aventuriers);
+
+  if (newTurn === -1) {
+    console.log("Combat ends: everyone is unconscious");
+    const result = document.getElementById("combatbox") as HTMLElement;
+
+     result.className = "d-flex justify-content-center align-items-center vh-100 text-center";
+      result.innerHTML = `
+        <div>
+          <h2 class="fw-bold" style="color:#03735f">Défaite</h2>
+          <p class="mt-3">
+            Tous les efforts n'ont servi à rien. 
+            Le dernier souffle s’échappe... 
+            Le combat est perdu...
+
+            Vous et les bébés campestris finiront 
+            en ragoût...
+          </p>
+        </div>
+      `;
+    return;
+  }
+
+  turnNumber = newTurn;
+  ShowTurn(initiativeTour, turnNumber, aventuriers);
+});
 
 //Comment jouer 
 const howtoplayopen = document.getElementById("howtoplayopen");
@@ -25,8 +68,8 @@ const popup = document.querySelector(".pop-up") as HTMLDivElement;
 
 howtoplayopen.addEventListener("click", () => {
     const rect = howtoplayopen.getBoundingClientRect();
-    popup.style.top = rect.bottom + "px";        // below the button
-    popup.style.left = rect.left + "px";         // aligned with left edge
+    popup.style.top = rect.bottom + "px";        
+    popup.style.left = rect.left + "px";         
     popup.style.position = "absolute";
     modalContainer.classList.add("show");
 });
@@ -35,13 +78,8 @@ howtoplayclose.addEventListener("click", () => {
     modalContainer.classList.remove("show");    
 });
 
-const infoopen = document.getElementById("infoopen") as HTMLDivElement;
 const infoClose = document.getElementById("infoClose")as HTMLDivElement;
 const infoModal = document.querySelector(".infoModal") as HTMLDivElement; 
-
-infoopen.addEventListener("click", () => {
-    infoModal.classList.add("show");
-});
 
 infoClose.addEventListener("click", () => {
     infoModal.classList.remove("show");    
@@ -55,6 +93,12 @@ newGame.addEventListener("click", function() {
   window.location.href = "/src/index.html"
 });
 
+function loadDataWithInitiavive ()  {
+  loadData();
+  const initiativeTourData = localStorage.getItem("initiativeTour");
+    if (initiativeTourData) Object.assign(initiativeTour, JSON.parse(initiativeTourData));
+   console.log("InitiativeTour: ", initiativeTourData);
+}
 
 //show the member info in the pop-up
 function UpDateTroglo (){

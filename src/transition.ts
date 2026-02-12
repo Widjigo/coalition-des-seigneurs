@@ -22,11 +22,12 @@ export function loadData() {
     const jaugeTempsData = localStorage.getItem("jaugeTemps");
     const partyObjectsData = localStorage.getItem("party_objects");
 
+
     if (partyData) Object.assign(party, JSON.parse(partyData));
     if (aventuriersData) Object.assign(aventuriers, JSON.parse(aventuriersData));
     let temps = jaugeTempsData ? JSON.parse(jaugeTempsData) : 0;
     if (partyObjectsData) Object.assign(party_objects, JSON.parse(partyObjectsData));
-
+ 
     const jg = document.getElementById("jg") as HTMLElement | null;
     if (jg) {
         if (temps === 0) {
@@ -120,5 +121,4 @@ function saveCampestri() {
         console.log("Campestri NOT saved.");
         return { save, needed, success };
     };
-
 }

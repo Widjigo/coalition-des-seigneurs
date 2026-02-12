@@ -23,25 +23,28 @@ function isEmptyImage(imgElement: HTMLImageElement | null): boolean {
 
  //adding a party member
 export function addToParty(member: aventurier) {
-    for (let i = 0; i < memberImages.length; i++) {
-            
-        //check if the member is already in the party
-        if ((party[i+1])&& party[i + 1].id === member.id){
-            console.log("Member is already in the party.")
-            return;
-            }
-        
-        //add the member to the first empty slot
-        if (isEmptyImage(memberImages[i])) {
-            const imgElement = memberImages[i];
-            party[i+1] = member;
-            imgElement.src = member.img; 
-            console.log("member of party${i+1}:", party)
-            return;}
+  const MAX = 4;
+  for (let i = 0; i < MAX; i++) {
+    //check if the member is already in the party
+    if ((party[i]) && party[i].id === member.id) {
+      console.log("Member is already in the party.")
+      return;
+    }
 
-        //no empty slot found
-        else
-            console.log("No empty slot available in the party."); 
+    //add the member to the first empty slot
+    for (let i = 0; i < MAX; i++) {
+      if (!party[i]) {
+        party[i] = member;
+
+        const imgElement = memberImages[i];
+        if (imgElement) imgElement.src = member.img;
+
+        console.log(`member of party ${i + 1}:`, party);
+        return;
+      }
+    }
+
+  console.log("No empty slot available in the party.");
     }
  }
 
@@ -66,7 +69,7 @@ function OpenPopup() {
       if (isEmptyImage(img)) return;
 
       //wich slot is this image?
-      const slot = index + 1;
+      const slot = index;
       const member = party[slot];
       if (!member) return;
 

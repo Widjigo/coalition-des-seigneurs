@@ -18,3 +18,18 @@ html, body { height: 100%; margin: 0; }
 .info-btn {
   white-space: nowrap;
 }
+
+#usersTable {
+  --bs-table-bg: #03735f;        /* table background */
+  --bs-table-color: #ffffff;    /* text color */
+  --bs-table-border-color: #025a4a;
+}
+
+#usersTable thead {
+  --bs-table-bg: #025a4a;        /* header background */
+  --bs-table-color: #ffffff;
+}
+
+#usersTable tbody tr:nth-child(even) {
+  --bs-table-bg: #049a7d;        /* striped rows */
+}

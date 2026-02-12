@@ -81,67 +81,99 @@
       </div>
     </div>
 
-    <div class="combat">
+    <div class="combat" id="combatbox">
       <div class="general-combat">
 
         <div class="fixed-box">
           <div class="img-left"><img class="imgtroglo" src="assets/Troglo_finale.png" alt="troglodyteMonster"></div>
           <div class="info-right">
-          <div class="info-line"><b>Points de vie:</b> <span id="hpTroglo"></span><b>     DC:</b> <span id="dcTroglo"></span>
+            <div class="info-line"><b>Points de vie:</b> <span id="hpTroglo"></span><b> DC:</b> <span
+                id="dcTroglo"></span>
+            </div>
+            <div><b>Statut:</b> <span id="statutTroglo"></span></div>
+            <div><b>Attaque:</b> <span id="attacktroglo"></span></div>
+            <div id="dmgRowTroglo">
+              <b>Dégâts:</b> <span id="dmgTroglo"></span>
+            </div>
+
+            <div><b>Habileté spéciale :</b> <span id="specialTroglo"></span></div>
           </div>
-          <div><b>Statut:</b> <span id="statutTroglo"></span></div>
-          <div><b>Attaque:</b> <span id="attacktroglo"></span></div>
-          <div id="dmgRowTroglo">
-            <b>Dégâts:</b> <span id="dmgTroglo"></span>
+        </div>
+
+        <div class="combat-content d-flex flex-column" id="combat-box">
+          <div class="d-flex justify-content-center gap-4 " ><b>Joueur en cours:</b> <span id="CurrentPlayer"></span>
           </div>
 
-          <div><b>Habileté spéciale :</b> <span id="specialTroglo"></span></div>
+          <div class="d-flex justify-content-center gap-4" >
+            <div><b>Statut:</b> <span id="statutCP"></span></div>
+            <div><b>HP:</b> <span id="hpCP"></span></div>
+          </div>
+
+          <div class="d-flex justify-content-center gap-4"><b>Attaque:</b> <span id="attackCP"></span></div>
+          <div class="d-non d-flex justify-content-center gap-4" id="dmgRowCP"><b>Dégâts:</b> <span id="dmgCP"></span></div>
+
+          <div class="text-end">
+            <button type="button" class="btn btn-light" id="attackbtn"> Attaquer </button>
+            <button type="button" class="btn btn-light" id="turnbtn"> Terminer le tour </button>
+          </div>
+
+          <div>
+            <p id="resultCombat"> </p>
+          </div>
+        </div>
+
+        <button type="input" class="btn btn-light" popovertarget="mypopover"> Initiative </button>
+        <div id="mypopover" class="my-popover" popover>
+          <table class="table table-bordered" id="usersTable">
+            <thead>
+              <tr>
+                <th>Tour</th>
+                <th>Name</th>
+                <th>Initiative</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="objets">
+      <div class="box-right">
+        <div class="box" id="object1id">
+          <img id="object1" src="">
+        </div>
+        <div class="box" id="object2id">
+          <img id="object2" src="">
+        </div>
+        <div class="box" id="object3id">
+          <img id="object3" src="">
+        </div>
+        <div class="box" id="object4id">
+          <img id="object4" src="">
+        </div>
+      </div>
+      <div class="vertical-txt-right">
+        <h1 class="mb-1" style="text-align: center ; color:#03735f"> Objets </h1>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="infoModal">
+        <div class="infoPopup">
+          <div id="informations"></div>
+          <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
         </div>
       </div>
 
-      <div class="combat-content">
-      <div> <h4>Personnage en action : </h4> <span id="CurrentPlayer"></span></div>
-      <div> <b> Abilete </b> <span id="CurrentPlayer"></span></div>
-      </div>
+      <hr class="my-3 border-dark" />
 
+      <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
+      <br>
+      <br>
+      <p class="mb-0">Projet par Emmanuelle - 2025 </p>
     </div>
-  </div>
-
-  <div class="objets">
-    <div class="box-right">
-      <div class="box" id="object1id">
-        <img id="object1" src="">
-      </div>
-      <div class="box" id="object2id">
-        <img id="object2" src="">
-      </div>
-      <div class="box" id="object3id">
-        <img id="object3" src="">
-      </div>
-      <div class="box" id="object4id">
-        <img id="object4" src="">
-      </div>
-    </div>
-    <div class="vertical-txt-right">
-      <h1 class="mb-1" style="text-align: center ; color:#03735f"> Objets </h1>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="infoModal">
-      <div class="infoPopup">
-        <div id="informations"></div>
-        <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
-      </div>
-    </div>
-
-    <hr class="my-3 border-dark" />
-
-    <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
-    <br>
-    <br>
-    <p class="mb-0">Projet par Emmanuelle - 2025 </p>
-  </div>
   </div>
   <script type="module" src="/src/combat.ts"></script>
   <script type="module" src="/src/combat_pop-up.ts"></script>

@@ -51,6 +51,7 @@ function initiative(party:Record<number, aventurier>, jaugeTemps: number) {
 
         initiativeTour.push(data);
         partyInitiative[member.id] = data;
+        
         };
         
     //Baddy in the initiative 
@@ -76,12 +77,13 @@ function initiative(party:Record<number, aventurier>, jaugeTemps: number) {
         item.order = index + 1;
     });
     console.log(initiativeTour);
+    localStorage.setItem("initiativeTour", JSON.stringify(initiativeTour));
     return initiativeTour;
     };
 
 
 // Create the table in html 
-function generateTable(initiativeTour) {
+export function generateTable(initiativeTour) {
     if (!initiativeTour || initiativeTour.length === 0) return null;
     const tableBody = document.querySelector("#usersTable tbody") as HTMLTableCaptionElement;
 
