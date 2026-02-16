@@ -24,8 +24,7 @@ modalEl?.addEventListener("hidden.bs.modal", () => {
   console.log("Combat started");
   //window.location.href = "src/combat.html"
 
-  const base = import.meta.env.BASE_URL
-  window.location.href = new URL("src/combat.html", base).toString();
+  window.location.href = `${import.meta.env.BASE_URL}src/combat.html`;
 });
 
 export type InitiativeData = {
