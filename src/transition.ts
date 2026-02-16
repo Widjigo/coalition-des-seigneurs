@@ -9,7 +9,8 @@ import { rollDice } from "./dice_rolls"
     localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
     localStorage.setItem("jaugeTemps", JSON.stringify(jaugeTemps));
     localStorage.setItem("party_objects", JSON.stringify(party_objects));
-    window.location.href = "src/transition.html"
+
+    window.location.href = `${import.meta.env.BASE_URL}src/transition.html`;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
