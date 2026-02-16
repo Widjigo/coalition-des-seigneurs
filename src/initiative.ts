@@ -22,7 +22,10 @@ initiativeButton?.addEventListener("click", () => {
 const modalEl = document.getElementById("exampleModal");
 modalEl?.addEventListener("hidden.bs.modal", () => {
   console.log("Combat started");
-  window.location.href = "src/combat.html"
+  //window.location.href = "src/combat.html"
+
+  const base = import.meta.env.BASE_URL
+  window.location.href = new URL("src/combat.html", base).toString();
 });
 
 export type InitiativeData = {
