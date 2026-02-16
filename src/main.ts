@@ -51,5 +51,5 @@ const newGame = document.getElementById("newGame");
 newGame.addEventListener("click", function() {
   location.reload();
   localStorage.clear();
-  window.location.href = "/src/index.html"
+  window.location.href = "index.html"
 });

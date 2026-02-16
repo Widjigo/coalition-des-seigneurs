@@ -55,6 +55,15 @@ const playerID = playerCurrent.id;
     const player = aventuriers[playerID]
       console.log("player from object:", aventuriers[playerID]);
 
+
+      // information si statut est autre que vivant 
+    statut.classList.remove("text-danger", "text-warning");
+    if (player.statut !== "Vivant") {
+    statut.classList.add("text-danger");
+    } else {
+    statut.classList.remove("text-danger");
+    } 
+
    name.textContent = player.name;
    hp.textContent = String(player.hp);
    statut.textContent = String(player.statut);
