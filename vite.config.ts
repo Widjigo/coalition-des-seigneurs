@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig(({ command }) => {
   // In GitHub Actions this env is "owner/repo"
@@ -14,6 +15,16 @@ export default defineConfig(({ command }) => {
     // Always use '/' in dev to avoid malformed URLs.
     // Use the Pages base only for build output.
     base: command === 'serve' ? '/' : pagesBase,
+    // Add multi-page inputs so Vite includes transition.html in the build output
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          transition: resolve(__dirname, 'src/transition.html'),
+          combat: resolve(__dirname, 'src/combat.html'),
+        },
+      },
+    },
   }  
   
 })
