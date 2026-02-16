@@ -90,7 +90,8 @@ const newGame = document.getElementById("newGame");
 newGame.addEventListener("click", function() {
   location.reload();
   localStorage.clear();
-  window.location.href = "index.html"
+
+  window.location.href = `${import.meta.env.BASE_URL}index.html`;
 });
 
 function loadDataWithInitiavive ()  {
