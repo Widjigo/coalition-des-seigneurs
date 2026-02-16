@@ -58,6 +58,4 @@ window.addEventListener("pointerup", () => {
         card.style.color = "red"
     }
 })
-
-
     }

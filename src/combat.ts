@@ -1,20 +1,14 @@
 import {loadData } from "./transition";
-import {aventuriers} from "./aventuriers"
 import {initiativeTour} from "./initiative"
 import bagkgroundHeadUrl from "./assets/background-head.png";
 import { generateTable } from "./initiative";
-import { CurrentTurn, ShowTurn } from "./AttackTurn";
+import { Attack, CurrentTurn, ShowTurn } from "./AttackTurn";
+import { UpDateTroglo } from "./UpdateTroglo";
 (document.querySelector(".layout div.header") as HTMLDivElement).style.backgroundImage = `url(${bagkgroundHeadUrl})`;
 
-//Troglodytes_info
-const hpTroglo = document.getElementById("hpTroglo") as HTMLElement;
-const dcTroglo = document.getElementById("dcTroglo") as HTMLElement;
-const attackTroglo = document.getElementById("attacktroglo") as HTMLElement;
-const dmgRowTroglo= document.getElementById("dmgRowTroglo") as HTMLElement;
-const dmgTroglo = document.getElementById("dmgTroglo") as HTMLElement;
-const specialTroglo = document.getElementById("specialTroglo") as HTMLElement;
-const statutTroglo = document.getElementById("statutTroglo") as HTMLElement;
 const popover = document.getElementById("mypopover");
+const attackbtn = document.getElementById("attackbtn");
+
 
 // Loading the page 
 UpDateTroglo();
@@ -30,10 +24,12 @@ popover.addEventListener("toggle", () => {
 //Attack tour 
 const turnbtn = document.getElementById("turnbtn");
 let turnNumber = 0;
-ShowTurn(initiativeTour, turnNumber, aventuriers);
+attackbtn.classList.add('d-none');
+ShowTurn(initiativeTour, turnNumber);
 
+ 
 turnbtn.addEventListener("click", () => {
-  const newTurn = CurrentTurn(initiativeTour, turnNumber, aventuriers);
+  const newTurn = CurrentTurn(initiativeTour, turnNumber);
 
   if (newTurn === -1) {
     console.log("Combat ends: everyone is unconscious");
@@ -57,11 +53,15 @@ turnbtn.addEventListener("click", () => {
   }
 
   turnNumber = newTurn;
-  ShowTurn(initiativeTour, turnNumber, aventuriers);
+  ShowTurn(initiativeTour, turnNumber);
 });
 
+attackbtn.addEventListener("click", () => {
+  attackbtn.classList.add('d-none');
+  Attack(initiativeTour, turnNumber)});
+
 //Comment jouer 
-const howtoplayopen = document.getElementById("howtoplayopen");
+const howtoplayopen = document.getElementById("resultCombat");
 const howtoplayclose = document.getElementById("howtoplayclose");
 const modalContainer = document.querySelector(".pop-up-container") as HTMLDivElement;
 const popup = document.querySelector(".pop-up") as HTMLDivElement;
@@ -99,21 +99,3 @@ function loadDataWithInitiavive ()  {
     if (initiativeTourData) Object.assign(initiativeTour, JSON.parse(initiativeTourData));
    console.log("InitiativeTour: ", initiativeTourData);
 }
-
-//show the member info in the pop-up
-function UpDateTroglo (){
-    const troglo = aventuriers[6];
-      hpTroglo.textContent = String(troglo.hp);
-      dcTroglo.textContent = String(troglo.dc);
-      attackTroglo.textContent =
-        troglo.attack_bonus != null
-          ? troglo.attack_type + " +" + troglo.attack_bonus + " pour toucher "
-          : troglo.attack_type;
-      statutTroglo.textContent = String(troglo.statut);
-      specialTroglo.textContent = troglo.ability;
-      if (troglo.attack_dmg_bonus != null){
-        dmgTroglo.textContent =
-        "1d" + troglo.attack_dmg_roll + " +" + troglo.attack_dmg_bonus;
-        dmgRowTroglo.classList.remove("d-none");
-      }
-    }

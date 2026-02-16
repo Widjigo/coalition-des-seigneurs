@@ -24,6 +24,8 @@ let currentcard = CARDS[1];
 updateCard(currentcard);
 choixl.style.display = "none";
 imgarrowl.style.display = "none";
+localStorage.clear;
+console.log("locale storage clear");
 
 card?.addEventListener("transitionend", (e) => {
     if (e.target !== card) return;

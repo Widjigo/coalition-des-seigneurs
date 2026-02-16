@@ -1,6 +1,6 @@
 import { party } from "./party"
-import {type aventurier} from "./aventuriers"
-import {loadData } from "./transition";
+import {aventuriers} from "./aventuriers"
+import {loadData } from "./transition"
 import {party_objects} from "./party_objects"
 
 // Personnage informations
@@ -30,25 +30,35 @@ const name = document.getElementById("name") as HTMLElement;
 const effect = document.getElementById("effect") as HTMLElement;
 
 loadData();
-showParty(party, memberImages);
-showObjects(party_objects, objectImages);
+showParty();
+showObjects();
 
 function isEmptyImage(imgElement: HTMLImageElement | null): boolean {
     return !imgElement || !imgElement.getAttribute("src");
 }
 
-function showParty(party:Record<number, aventurier>, memberImages: HTMLImageElement[]) {
-  const MAX = 4
+export function showParty() {
+  const MAX = 4;
+
   for (let i = 0; i < MAX; i++) {
     const imgElement = memberImages[i];
-    const member = party[i]; 
+    const partySlot = party[i];
 
-    if (!member) {
-      // no member for this slot -> clear
+    if (!partySlot) {
       imgElement.removeAttribute("src");
       continue;
     }
-    imgElement.src = member.img;
+
+    const member = aventuriers[partySlot.id];
+    if (!member) {
+      imgElement.removeAttribute("src");
+      continue;
+    }
+
+    imgElement.src =
+      member.statut === "Inconscient"
+        ? member.imgDead
+        : member.img;
   }
 }
 
@@ -66,17 +76,20 @@ ClosePopupCharacter();
 let currentAnchorImage: HTMLImageElement | null = null;
 
 
-function showObjects(party_objects: Record<number, any>, objectImages: HTMLImageElement[]) {
+export function showObjects() {
   for (let i = 0; i < objectImages.length; i++) {
     const imgElement = objectImages[i];
-    const objet = party_objects[i + 1]; // or i (see point #2)
+    const objet = party_objects[i + 1]; 
 
     if (!objet) {
       imgElement.removeAttribute("src");
       continue;
     }
 
-    imgElement.src = objet.img; 
+      imgElement.src =
+      objet.statut === "Indisponible"
+        ? objet.imgUsed
+        : objet.img;
   }
 }
 
@@ -88,7 +101,8 @@ function OpenPopupCharacter() {
 
       //wich slot is this image?
       const slot = index;
-      const member = party[slot];
+      const partySlot = party[slot];
+      const member = aventuriers[partySlot.id];
       if (!member) return;
 
       currentAnchorImage = img;

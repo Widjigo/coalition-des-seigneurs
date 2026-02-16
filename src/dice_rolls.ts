@@ -18,6 +18,16 @@ export function rollDice(sides: number): number {
     }
  }
 
+  export function rollDesadvantage(sides:number): number {
+    let roll1 = Math.floor(Math.random() * sides) + 1;
+    let roll2 = Math.floor(Math.random() * sides) + 1;
+    if (roll1 <= roll2) {
+        return roll1;
+    } else {
+        return roll2;
+    }
+ }
+
 export function bearInParty() {
     const yibap = aventuriers[2];
     const bear = aventuriers[4];

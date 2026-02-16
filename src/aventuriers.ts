@@ -3,13 +3,20 @@ import yibap_profil from "./assets/yibap_party.png";
 import marsyas_profil from "./assets/marsyas_profil.png";
 import ours_profil from "./assets/ours_profil.png";
 import belch_profil from "./assets/belch_profil.png";
+import deadBelch from "./assets/deadBelch.png";
+import deadMarsyas from "./assets/deadMarsyas.png";
+import deadPimple from "./assets/deadPimple.png"
+import deadYibap from "./assets/deadYibap.png";
+import deadOurs from "./assets/deadOurs.png";
 
 // Type
 export type aventurier = {
   id: number;
   name: string;
   hp: number;
+  max_HP: number;
   img: string | null;
+  imgDead: string | null;
   attack_type: string;
   dc: number | null;
   attack_bonus: number | null;
@@ -25,22 +32,26 @@ export const aventuriers: Record<number, aventurier> = {
     id: 1,
     name: "Pimple",
     hp: 17,
+    max_HP: 17,
     attack_type: "Fouet d'eau.",
     img: pimple_profil,
+    imgDead: deadPimple,
     dc: 12, 
     attack_bonus: 4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
     ability: "Lancer le sortilège «Lire les pensées»",
-    statut : "Inconscient",
+    statut : "Vivant",
   },
 
   2: {
     id: 2,
     name: "Yibap",
     hp: 4,
+    max_HP: 4,
     img: yibap_profil,
-    attack_type: "Nuage de spores.\n Sur un 10 et -, la créature est étouffée et incapable d'attaquer durant un tour",
+    imgDead: deadYibap ,
+    attack_type: "Nuage de spores.\n Sur un 10 et -, la créature est étouffée. Elle aura un malus de 4 à l'attaque lors de son prochain tour.",
     dc: 10,
     attack_bonus: null ,
     attack_dmg_roll: null,
@@ -53,7 +64,9 @@ export const aventuriers: Record<number, aventurier> = {
     id: 3,
     name: "Marsyas",
     hp: 14,
+    max_HP: 14,
     img: marsyas_profil,
+    imgDead: deadMarsyas ,
     attack_type: "Charge de cornes.",
     dc: 11 ,
     attack_bonus: 5,
@@ -67,7 +80,9 @@ export const aventuriers: Record<number, aventurier> = {
     id: 4,
     name: "Ours",
     hp: 25,
+    max_HP: 25,
     img: ours_profil,
+    imgDead: deadOurs ,
     attack_type: "Morsure.",
     dc: 13 ,
     attack_bonus: 5,
@@ -81,7 +96,9 @@ export const aventuriers: Record<number, aventurier> = {
     id: 5,
     name: "Belch",
     hp: 7,
+    max_HP: 7,
     img: belch_profil,
+    imgDead: deadBelch ,
     attack_type: "Scimitar.",
     dc: 12 ,
     attack_bonus: 4,
@@ -90,16 +107,17 @@ export const aventuriers: Record<number, aventurier> = {
     ability: "Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
     statut : "Vivant"
   },
-
   
     6: {
     id: 6,
     name: "Troglodyte",
-    hp: 30,
+    hp: 40,
+    max_HP: 50,
     img: null,
+    imgDead: null ,
     attack_type: "Coup de griffe.",
     dc: 14 ,
-    attack_bonus: 5,
+    attack_bonus: 6,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Souffle au visage empoisonné : Désavantage durant un tour",
