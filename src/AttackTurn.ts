@@ -6,8 +6,8 @@ import { getTroglo, UpDateTroglo } from "./UpdateTroglo";
 import { party_objects } from "./party_objects";
 
 
-const affichageResultat = document.getElementById("resultCombat");
-const attackbtn = document.getElementById("attackbtn");
+const affichageResultat = document.getElementById("resultCombat") as HTMLElement | null;
+const attackbtn = document.getElementById("attackbtn") as HTMLElement | null;
 
 export function CurrentTurn(initiativeTour, turnNumber) {
     const anyHeroAlive = Object.values(party).some((slot: any) => {
@@ -39,6 +39,7 @@ export function CurrentTurn(initiativeTour, turnNumber) {
     checked++;
 
   } while (checked < initiativeTour.length);
+  return -1 ;
 }
 
 export function ShowTurn (initiativeTour, turnNumber) {
@@ -50,6 +51,7 @@ export function ShowTurn (initiativeTour, turnNumber) {
     const dmg = document.getElementById("dmgCP") as HTMLElement;
     const playerCurrent = initiativeTour[turnNumber];
     console.log("turnNumber:", turnNumber, "playerCurrent:", playerCurrent);
+    if (!playerCurrent) return;
    
 const playerID = playerCurrent.id;
     const player = aventuriers[playerID]
@@ -85,7 +87,7 @@ const playerID = playerCurrent.id;
      }
 
     // hero turn: show objects
-       UseObjects(player);;
+       UseObjects(player);
 }
 
 export function Attack(initiativeTour, turnNumber) {
@@ -102,6 +104,7 @@ export function Attack(initiativeTour, turnNumber) {
         troglo.statut = "Étouffement";
         affichageResultat.textContent = `Yibap réussi à utiliser son nuage de spores avec un jet de ${result}. Le troglodyte est étouffé
       Elle aura un malus de 4 à l'attaque lors de son prochain tour.`
+      return;
       }
     }
 
@@ -147,11 +150,14 @@ export function Attack(initiativeTour, turnNumber) {
 
 function trogloAttack() {
   const chooseAttack = rollDice(3);
-  const keys = Object.keys(party);
-  const randomKey = keys[Math.floor(Math.random() * keys.length)];
-  const partyRandom = party[randomKey];
-  const partyMember = aventuriers[partyRandom.id];
+  const alive = Object.values(party).filter((slot: any) =>
+    slot && slot.id !== 6 && aventuriers[slot.id]?.statut !== "Inconscient"
+  );
 
+  if (alive.length === 0) return; // nobody to hit
+
+  const partyRandom: any = alive[Math.floor(Math.random() * alive.length)];
+  const partyMember = aventuriers[partyRandom.id];
   let result = rollDice(20)
   const troglo = getTroglo();
 
@@ -179,24 +185,25 @@ function trogloAttack() {
         showParty();
         affichageResultat.textContent = `Le troglodyte réussit, avec un jet de ${result}, à donner un coup de griffe à ${partyMember.name}. 
         Celui-ci souffrira de ${damage} points de dégât. N'ayant plus assez de vie, il tombe inconscient.`
-      } else {affichageResultat.textContent = `Le troglodyte réussit, avec un jet de ${result}, à donner un coup de griffe à ${partyMember.name}. 
+      } else {
+        affichageResultat.textContent = `Le troglodyte réussit, avec un jet de ${result}, à donner un coup de griffe à ${partyMember.name}. 
         Celui-ci souffrira de ${damage} points de dégât.`
-    }
-    }else {
+      }
+    } else {
       affichageResultat.textContent = `Le troglodyte essaie de griffer ${partyMember.name}, avec un jet de ${result} il est maladroit
           et ${partyMember.name} réussit à l'éviter.`
     }
   }
 }
 
-function checkIfPoisoned(player){
-  let result ;
-    if (player.statut === "Empoisonnement") {
-      result = rollDesadvantage(20);
-      player.statut = "Vivant";
-    }
-    else { result = rollDice(20) };
-return result ;
+function checkIfPoisoned(player) {
+  let result;
+  if (player.statut === "Empoisonnement") {
+    result = rollDesadvantage(20);
+    player.statut = "Vivant";
+  }
+  else { result = rollDice(20) };
+  return result;
 }
 
 export function UseObjects(player: any) {
@@ -245,5 +252,5 @@ export function UseObjects(player: any) {
     });
 
     objetline.appendChild(btn);
-  }); 
+  });
 }
