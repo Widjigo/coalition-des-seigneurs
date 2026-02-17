@@ -3,7 +3,7 @@ import piege from "./assets/piege.png";
 import antitoxin from "./assets/antitoxin.png";
 import bouclier from "./assets/bouclier.png";
 import usedAminata from "./assets/UsedAminata.png";
-import usedAntitoxine from "./assets/UsedBouclier.png";
+import usedAntitoxine from "./assets/usedAntitoxine.png";
 import usedBouclier from "./assets/UsedBouclier.png";
 import usedPiege from "./assets/UsedPiege.png"
 
