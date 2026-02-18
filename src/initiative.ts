@@ -150,26 +150,47 @@ function bonusBouclier (party: Record<number, aventurier>) {
     confirmBtn.className = "btn btn-success mt-3";
     confirmBtn.textContent = "Ok";
 
-    confirmBtn.addEventListener("click", () => {
-    const selected = container.querySelector(
-      'input[name="radioOneOption"]:checked'
-    ) as HTMLInputElement | null;
+confirmBtn.addEventListener("click", () => {
+  const selected = container.querySelector(
+    'input[name="radioOneOption"]:checked'
+  ) as HTMLInputElement | null;
 
-    if (!selected) {
-      alert("Veuillez choisir un aventurier.");
-      return;
+  if (!selected) {
+    alert("Veuillez choisir un aventurier.");
+    return;
+  }
+
+  const selectedId = Number(selected.value);
+
+  // 1) Party member
+  const partyMember = party[selectedId];
+  if (partyMember) {
+    partyMember.bouclier = true;
+  }
+
+  // 2) Aventurier with same id
+  const av = aventuriers[selectedId];
+  if (av) {
+    av.bouclier = true;
+
+    // dc can be null, so protect it
+    if (av.dc != null) {
+      av.dc += 2;
     }
+  }
 
-    const selectedId = Number(selected.value);
-    console.log("Bouclier donné à l’aventurier ID:", selectedId);
+  // persist party (and optionally aventuriers if you store it too)
+  localStorage.setItem("party", JSON.stringify(party));
+  localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
 
-    // apply bonus here
-    const member = Object.values(party).find(
-    (p) => p.id === selectedId); 
-    member.dc += 2;
-    localStorage.setItem("party", JSON.stringify(party));
-    confirmBtn.disabled = true;
-    });
+  console.log("Shield given to ID:", selectedId, {
+    party: partyMember,
+    aventurier: av,
+  });
+
+  confirmBtn.disabled = true;
+});
+
   container.appendChild(confirmBtn);
 }
 

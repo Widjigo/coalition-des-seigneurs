@@ -9,8 +9,14 @@ import { party_objects } from "./party_objects";
 const affichageResultat = document.getElementById("resultCombat") as HTMLElement | null;
 const attackbtn = document.getElementById("attackbtn") as HTMLElement | null;
 
+function setAttackButtonVisible(visible: boolean) {
+  if (!attackbtn) return;
+  attackbtn.classList.toggle("d-none", !visible);
+}
+
+
 export function CurrentTurn(initiativeTour, turnNumber) {
-    const anyHeroAlive = Object.values(party).some((slot: any) => {
+  const anyHeroAlive = Object.values(party).some((slot: any) => {
     if (!slot) return false;                 // empty slot
     if (slot.id === 6) return false;         // ignore troglo if it's in party by mistake
     const hero = aventuriers[slot.id];       // only heroes in the party
@@ -39,61 +45,67 @@ export function CurrentTurn(initiativeTour, turnNumber) {
     checked++;
 
   } while (checked < initiativeTour.length);
-  return -1 ;
+  return -1;
 }
 
-export function ShowTurn (initiativeTour, turnNumber) {
-    const name = document.getElementById("CurrentPlayer") as HTMLElement;
-    const hp = document.getElementById("hpCP") as HTMLElement;
-    const statut = document.getElementById("statutCP") as HTMLElement;
-    const attack = document.getElementById("attackCP") as HTMLElement;
-    const dmgRow = document.getElementById("dmgRowCP") as HTMLElement;
-    const dmg = document.getElementById("dmgCP") as HTMLElement;
-    const playerCurrent = initiativeTour[turnNumber];
-    console.log("turnNumber:", turnNumber, "playerCurrent:", playerCurrent);
-    if (!playerCurrent) return;
-   
-const playerID = playerCurrent.id;
-    const player = aventuriers[playerID]
-      console.log("player from object:", aventuriers[playerID]);
+export function ShowTurn(initiativeTour, turnNumber) {
+  const name = document.getElementById("CurrentPlayer") as HTMLElement;
+  const hp = document.getElementById("hpCP") as HTMLElement;
+  const statut = document.getElementById("statutCP") as HTMLElement;
+  const attack = document.getElementById("attackCP") as HTMLElement;
+  const dmgRow = document.getElementById("dmgRowCP") as HTMLElement;
+  const dmg = document.getElementById("dmgCP") as HTMLElement;
+  const playerCurrent = initiativeTour[turnNumber];
+  console.log("turnNumber:", turnNumber, "playerCurrent:", playerCurrent);
+  if (!playerCurrent) return;
 
+  const playerID = playerCurrent.id;
+  const player = aventuriers[playerID]
+  console.log("player from object:", aventuriers[playerID]);
 
-      // information si statut est autre que vivant 
-    statut.classList.remove("text-danger", "text-warning");
-    if (player.statut !== "Vivant") {
+  // hide attack if troglo, show if hero
+  setAttackButtonVisible(player.id !== 6);
+  // information si statut est autre que vivant 
+  statut.classList.remove("text-danger", "text-warning");
+  if (player.statut !== "Vivant") {
     statut.classList.add("text-danger");
-    } else {
+  } else {
     statut.classList.remove("text-danger");
-    } 
+  }
 
-   name.textContent = player.name;
-   hp.textContent = String(player.hp);
-   statut.textContent = String(player.statut);
-   attack.textContent = player.attack_bonus != null
-        ? player.attack_type + " +" + player.attack_bonus + " pour toucher "
-        : player.attack_type;
+  //clear dmg row 
+  dmg.textContent = "";
+  dmgRow.classList.add("d-none");
 
-      if (player.attack_dmg_bonus != null){
-        dmg.textContent =
-        "1d" + player.attack_dmg_roll + " +" + player.attack_dmg_bonus;
-        dmgRow.classList.remove("d-none");
-      }
 
-     if (player.id === 6) {
+  name.textContent = player.name;
+  hp.textContent = String(player.hp);
+  statut.textContent = String(player.statut);
+  attack.textContent = player.attack_bonus != null
+    ? player.attack_type + " +" + player.attack_bonus + " pour toucher "
+    : player.attack_type;
+
+  if (player.attack_dmg_bonus != null) {
+    dmg.textContent =
+      "1d" + player.attack_dmg_roll + " +" + player.attack_dmg_bonus;
+    dmgRow.classList.remove("d-none");
+  }
+
+  if (player.id === 6) {
     // troglo turn: hide/clear objects
     const objetline = document.getElementById("objetsdispos") as HTMLElement | null;
     if (objetline) objetline.innerHTML = "";
     return;
-     }
+  }
 
-    // hero turn: show objects
-       UseObjects(player);
+  // hero turn: show objects
+  UseObjects(player, initiativeTour, turnNumber);
 }
 
 export function Attack(initiativeTour, turnNumber) {
   const playerCurrent = initiativeTour[turnNumber];
   const player = aventuriers[playerCurrent.id];
- const troglo = getTroglo();
+  const troglo = getTroglo();
 
   if (player.id <= 5) {
     let result = checkIfPoisoned(player);
@@ -102,9 +114,14 @@ export function Attack(initiativeTour, turnNumber) {
       result = 20 - result;
       if (result <= 10) {
         troglo.statut = "Étouffement";
-        affichageResultat.textContent = `Yibap réussi à utiliser son nuage de spores avec un jet de ${result}. Le troglodyte est étouffé
-      Elle aura un malus de 4 à l'attaque lors de son prochain tour.`
-      return;
+        UpDateTroglo();
+        affichageResultat.textContent = `Yibap réussi à utiliser son nuage de spores. Le troglodyte ne réussit pas à éviter le nuage avec un jet de sauvegarde de ${result}. Le troglodyte est étouffé et
+        aura un malus de 4 à l'attaque lors de son prochain tour.`
+        return;
+      }
+      else {
+        affichageResultat.textContent = `Le troglodyte réussit à éviter le nuage avec un jet de sauvegarde de ${result}.`
+        return;
       }
     }
 
@@ -113,7 +130,7 @@ export function Attack(initiativeTour, turnNumber) {
     if (result >= troglo.dc) {
       let damage = rollDice(player.attack_dmg_roll) + player.attack_dmg_bonus
       troglo.hp = troglo.hp - damage;
-      if (troglo.statut === "Immobilisation"){
+      if (troglo.statut === "Immobilisation") {
         troglo.hp = troglo.hp - 2;
         troglo.statut = "Vivant"
       };
@@ -123,7 +140,7 @@ export function Attack(initiativeTour, turnNumber) {
 
       if (troglo.hp <= 0) {
         troglo.statut = "Inconscient";
-        const reussite= document.getElementById("combatbox") as HTMLElement;
+        const reussite = document.getElementById("combatbox") as HTMLElement;
         reussite.className = "d-flex justify-content-center align-items-center vh-100 text-center";
         reussite.innerHTML = `
           <div>
@@ -134,6 +151,7 @@ export function Attack(initiativeTour, turnNumber) {
             Vous revenez avec les bébés campestries survivants et les remettez à Bestir toujours en larmes, mais de joie cette fois-ci. 
             Pimple devient officiellement le héros de Grovine, une statut de sel est érigée à l'entrée de la grotte à son honneur. 
             </p>
+            <img src="final-r.jpg" alt="reussite image">
           </div>
         `;
       } else {
@@ -161,22 +179,26 @@ function trogloAttack() {
   let result = rollDice(20)
   const troglo = getTroglo();
 
+  if (troglo.statut === "Étouffement") {
+    result = result - 4;
+    troglo.statut = "Vivant";
+    UpDateTroglo();
+  }
+
   // if roll 1 its the poison attack
   if (chooseAttack === 1) {
     if (result >= 10) {
       partyMember.statut = "Empoisonnement"
-      affichageResultat.textContent = `Le troglodyte réussit, avec un jet de ${result} à s'approcher du visage de ${partyMember.name}. 
+      affichageResultat.textContent = `Le troglodyte réussit, avec un jet de dextérité de ${result} à s'approcher du visage de ${partyMember.name}. 
           Ce dernier aura désavantage à son jet d'attaque le prochain tour. `
     } else {
-      affichageResultat.textContent = `Le troglodyte essaie de s'approcher du visage du visage de ${partyMember.name}. Avec un jet de ${result}, il est maladroit
+      affichageResultat.textContent = `Le troglodyte essaie de s'approcher du visage du visage  ${partyMember.name}. Avec un jet de dextérité de ${result}, il est maladroit
           et ${partyMember.name} réussit à éviter de se faire empoisonner.`
     }
     // other roll is the normal attack
   } else {
     result = result + troglo.attack_bonus;
-    if (troglo.statut === "Étouffement") {
-      result = result - 4
-    }
+
     if (result >= partyMember.dc) {
       let damage = rollDice(troglo.attack_dmg_roll) + troglo.attack_dmg_bonus
       partyMember.hp = partyMember.hp - damage;
@@ -194,6 +216,7 @@ function trogloAttack() {
           et ${partyMember.name} réussit à l'éviter.`
     }
   }
+
 }
 
 function checkIfPoisoned(player) {
@@ -206,7 +229,7 @@ function checkIfPoisoned(player) {
   return result;
 }
 
-export function UseObjects(player: any) {
+export function UseObjects(player: any, initiativeTour: any[], turnNumber: number) {
   const objetline = document.getElementById("objetsdispos");
   if (!objetline) return;
 
@@ -247,8 +270,8 @@ export function UseObjects(player: any) {
       party_objects[key].statut = "Indisponible";
 
       // refresh buttons (used one disappears)
-      UseObjects(player);
       showObjects();
+      ShowTurn(initiativeTour, turnNumber);
     });
 
     objetline.appendChild(btn);

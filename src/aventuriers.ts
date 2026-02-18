@@ -22,8 +22,10 @@ export type aventurier = {
   attack_bonus: number | null;
   attack_dmg_roll: number| null;
   attack_dmg_bonus: number| null;
-  ability: string;
+  ability: string | null ;
   statut: string | null;
+  transitionBonus?:boolean;
+  bouclier?: boolean;
 };
 
 // aventuriers
@@ -42,6 +44,8 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_bonus: 2,
     ability: "Lancer le sortilège «Lire les pensées»",
     statut : "Vivant",
+    transitionBonus : false,
+    bouclier: false,
   },
 
   2: {
@@ -57,7 +61,8 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: null,
     attack_dmg_bonus: null,
     ability: "Sensibilité aiguë à la nature et à son environnement.",
-    statut : "Vivant"
+    statut : "Vivant",
+    bouclier: false,
   },
 
   3: {
@@ -72,8 +77,10 @@ export const aventuriers: Record<number, aventurier> = {
     attack_bonus: 5,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
-    ability: "Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
-    statut : "Vivant"
+    ability: null,
+    //"Marsyas possède une flûte de pan qui peut charmer un opposant par sa musique apaisante.",
+    statut : "Vivant",
+    bouclier: false,
   },
 
   4: {
@@ -88,8 +95,10 @@ export const aventuriers: Record<number, aventurier> = {
     attack_bonus: 5,
     attack_dmg_roll: 8,
     attack_dmg_bonus: 4,
-    ability: "Saute sur sa cible afin de lui lécher le visage et ainsi l’affaiblir.",
-    statut : "Vivant"
+    ability: null, 
+    //"Saute sur sa cible afin de lui lécher le visage et ainsi l’affaiblir.",
+    statut : "Vivant",
+    bouclier: false,
   },
 
     5: {
@@ -104,8 +113,10 @@ export const aventuriers: Record<number, aventurier> = {
     attack_bonus: 4,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 2,
-    ability: "Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
-    statut : "Vivant"
+    ability: null,
+    //"Belch est furieux contre le troglodyte, au premier tour, il attaque avec avantage.",
+    statut : "Vivant",
+    bouclier: false,
   },
   
     6: {
@@ -121,6 +132,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
     ability: "Souffle au visage empoisonné : Désavantage durant un tour",
-    statut : "Vivant"
+    statut : "Vivant",
+    transitionBonus: false,
   },
 };

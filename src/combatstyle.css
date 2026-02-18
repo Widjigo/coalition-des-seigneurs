@@ -138,14 +138,14 @@ html, body { height: 100%; margin: 0; }
 
 .combat .fixed-box{    
   display: flex;
-  flex-direction: column;   
+  flex-direction: row;   
   gap: 12px;
   border: 3px solid white;
   background: #03735f;
   border-radius: 10px;
   padding: 10px;
-  width: min(90%, 320px);
-  height: 500px;
+  width: min(90%, 750px);   /* same as combat-content */
+  height: 300px;
   box-sizing: border-box;
   overflow: hidden;
   margin-inline: auto;
@@ -154,7 +154,8 @@ html, body { height: 100%; margin: 0; }
 }
 
 .combat .fixed-box .img-left {
- flex: 0 0 250px;          
+ width: min(100%, 250px);   /* image area max 320 */
+ margin-inline: left;       /* left of the big box */      
  height: 250px;            /* example */
  overflow: hidden;
  border-radius: 10px;

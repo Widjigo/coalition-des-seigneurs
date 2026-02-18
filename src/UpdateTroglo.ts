@@ -13,6 +13,7 @@ export function UpDateTroglo (){
     const dmgTroglo = document.getElementById("dmgTroglo") as HTMLElement;
     const specialTroglo = document.getElementById("specialTroglo") as HTMLElement;
     const statutTroglo = document.getElementById("statutTroglo") as HTMLElement;
+    const bonusTroglo = document.getElementById("bonusTroglo") as HTMLElement;
     const troglodyte = getTroglo();
 
     if (!hpTroglo || !dcTroglo || !attackTroglo || !dmgRowTroglo || !dmgTroglo || !specialTroglo || !statutTroglo) {
@@ -25,6 +26,9 @@ export function UpDateTroglo (){
           ? troglodyte.attack_type + " +" + troglodyte.attack_bonus + " pour toucher "
           : troglodyte.attack_type;
       statutTroglo.textContent = String(troglodyte.statut);
+      if (troglodyte.transitionBonus === true){
+        bonusTroglo.textContent = "Repus, +5 pv"
+      }
       specialTroglo.textContent = troglodyte.ability;
       if (troglodyte.attack_dmg_bonus != null){
         dmgTroglo.textContent =

@@ -9,7 +9,6 @@ import { rollDice } from "./dice_rolls"
     localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
     localStorage.setItem("jaugeTemps", JSON.stringify(jaugeTemps));
     localStorage.setItem("party_objects", JSON.stringify(party_objects));
-
     window.location.href = `${import.meta.env.BASE_URL}src/transition.html`;
 }
 
@@ -23,12 +22,28 @@ export function loadData() {
     const jaugeTempsData = localStorage.getItem("jaugeTemps");
     const partyObjectsData = localStorage.getItem("party_objects");
 
-
     if (partyData) Object.assign(party, JSON.parse(partyData));
     if (aventuriersData) Object.assign(aventuriers, JSON.parse(aventuriersData));
     let temps = jaugeTempsData ? JSON.parse(jaugeTempsData) : 0;
     if (partyObjectsData) Object.assign(party_objects, JSON.parse(partyObjectsData));
- 
+
+    if (temps === 0) {
+        // avoid stacking +5 multiple times if loadData() is called again
+        if (!aventuriers[6].transitionBonus) {
+            aventuriers[6].hp += 5;
+            aventuriers[6].transitionBonus = true; // small flag
+            localStorage.setItem("aventuriers", JSON.stringify(aventuriers))}
+        }
+
+    if (temps === 1) {
+            // avoid stacking +5 multiple times if loadData() is called again
+            if (!aventuriers[1].transitionBonus) {
+                aventuriers[1].hp -= 2;
+                aventuriers[1].transitionBonus = true; // small flag
+                localStorage.setItem("aventuriers", JSON.stringify(aventuriers))
+            }
+        }
+
     const jg = document.getElementById("jg") as HTMLElement | null;
     if (jg) {
         if (temps === 0) {
@@ -38,11 +53,10 @@ export function loadData() {
             du troglodyte. <br> <br>
             
             Repus, le troglodyte sera plus fort pour vous affronter (Ajout de 5 points de vie)<br>`;
-            aventuriers[6].hp += 5; }
+        }
 
         else if (temps === 1) {
-            let result = saveCampestri();
-
+            let result= saveCampestri();
             if (result.success == true) {
                 jg.innerHTML = `Comme vous avez pris trop de temps à vous préparer à cet affrontement. Avec une jauge de vitesse de ${temps}, les conséquences
             sont désastreuses...<br><br>
@@ -56,10 +70,6 @@ export function loadData() {
             Cet acte de bravoure le distrait toutefois et le troglodyte réussit à le griffer, lui infligeant 2 poins de dégâts. <br>
             Il aura également l'avantage pour son jet d'initiative. <br><br>
             `;
-            // apply bonus here
-            const member = Object.values(party).find(
-            (p) => p.id === 1); 
-            member.hp -= 2;
             }
             if (result.success == false) {
                 jg.innerHTML = `Comme vous avez pris trop de temps à vous préparer à cet affrontement. Avec une jauge de vitesse de ${temps}, les conséquences
@@ -72,7 +82,6 @@ export function loadData() {
             Cette tragédie le distrait, et le troglodyte réussit à le griffer, lui infligeant 2 points de dégâts. <br>
             Il aura également l'avantage à l'initiative.<br> <br>
             `;
-                aventuriers[1].hp -= 2;
             }
         }
 

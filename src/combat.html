@@ -25,7 +25,15 @@
 
   <div class="party_pop-up-container">
     <div class="party_pop-up">
-      <h3 id="name_member"></h3>
+      <div class="info-line d-flex align-items-center">
+          <h3 id="name_member" class="mb-0"></h3>
+          <img
+            id="imgbouclier"
+            class="ms-2 d-none"
+            style="width:20px; height:20px;"
+            src=""
+          />
+      </div>
       <b>Points de vie: </b>
       <p id="hp"></p>
       <b>Attaque:</b>
@@ -35,7 +43,7 @@
       <div id="dmgRow"><b>Dégâts:</b>
         <p id="dmg"></p>
       </div>
-      <b>Habileté spéciale :</b>
+      <b>Info:</b>
       <p id="special"></p>
       <b>Statut:</b>
       <p id="statut"></p>
@@ -85,12 +93,14 @@
       <div class="general-combat">
 
         <div class="fixed-box">
-          <div class="img-left"><img class="imgtroglo" src="assets/Troglo_finale.png" alt="troglodyteMonster"></div>
+          <div class="img-left"><img class="imgtroglo" src="assets/griffe2.gif" alt="troglodyteMonster"></div>
           <div class="info-right">
             <div class="info-line"><b>Points de vie:</b> <span id="hpTroglo"></span><b> DC:</b> <span
                 id="dcTroglo"></span>
             </div>
-            <div><b>Statut:</b> <span id="statutTroglo"></span></div>
+            <div class="info-line"><b>Statut:</b> <span id="statutTroglo"></span><b> Bonus:</b> <span
+              id="bonusTroglo"></span>
+            </div>
             <div><b>Attaque:</b> <span id="attacktroglo"></span></div>
             <div id="dmgRowTroglo">
               <b>Dégâts:</b> <span id="dmgTroglo"></span>
@@ -106,7 +116,7 @@
 
           <div class="d-flex justify-content-center gap-4" >
             <div><b>Statut:</b> <span id="statutCP"></span></div>
-            <div><b>HP:</b> <span id="hpCP"></span></div>
+            <div><b>Points de vie:</b> <span id="hpCP"></span></div>
           </div>
 
           <div class="d-flex justify-content-center gap-4"><b>Attaque:</b> <span id="attackCP"></span></div>

@@ -2,6 +2,7 @@ import { party } from "./party"
 import {aventuriers} from "./aventuriers"
 import {loadData } from "./transition"
 import {party_objects} from "./party_objects"
+import bouclier from "./assets/bouclier-icon.png";
 
 // Personnage informations
 const popupcharacter = document.querySelector(".party_pop-up") as HTMLDivElement;
@@ -11,6 +12,7 @@ const memberImages = Array.from(
   document.querySelectorAll<HTMLImageElement>(".box-left img")
 );
 const hp = document.getElementById("hp") as HTMLElement;
+const imgbouclier = document.getElementById("imgbouclier") as HTMLElement;
 const attack = document.getElementById("attack") as HTMLElement;
 const dc = document.getElementById("dc") as HTMLElement;
 const dmg = document.getElementById("dmg") as HTMLElement;
@@ -112,6 +114,13 @@ function OpenPopupCharacter() {
 
       //show the member info in the pop-up
       name_member.textContent = member.name;
+      if (member.bouclier === true) {
+        (imgbouclier as HTMLImageElement).src = bouclier;
+        (imgbouclier as HTMLImageElement).classList.remove("d-none");
+      } else {
+        (imgbouclier as HTMLImageElement).removeAttribute("src");
+        (imgbouclier as HTMLImageElement).classList.add("d-none");
+}
       hp.textContent = String(member.hp);
       attack.textContent =
         member.attack_bonus != null
@@ -127,7 +136,9 @@ function OpenPopupCharacter() {
       else {
         dmgRow.classList.add("d-none");
       }
-      special.textContent = member.ability;
+      if (member.transitionBonus === true){
+        special.textContent = "Pimple débute avec 2 points de vie en moins";
+      }
     });
   });
 }

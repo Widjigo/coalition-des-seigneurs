@@ -11,8 +11,8 @@ const attackbtn = document.getElementById("attackbtn");
 
 
 // Loading the page 
-UpDateTroglo();
 loadDataWithInitiavive();
+UpDateTroglo();
 
 let tableGenerated = false;
 popover.addEventListener("toggle", () => {
@@ -47,6 +47,7 @@ turnbtn.addEventListener("click", () => {
             Vous et les bébés campestris finiront 
             en ragoût...
           </p>
+          <img src="chaudron.jpg" alt="Defaite image">
         </div>
       `;
     return;
