@@ -4,6 +4,7 @@ import bagkgroundHeadUrl from "./assets/background-head.png";
 import { generateTable } from "./initiative";
 import { Attack, CurrentTurn, ShowTurn } from "./AttackTurn";
 import { UpDateTroglo } from "./UpdateTroglo";
+import chaudron from "./assets/chaudron.png"
 (document.querySelector(".layout div.header") as HTMLDivElement).style.backgroundImage = `url(${bagkgroundHeadUrl})`;
 
 const popover = document.getElementById("mypopover");
@@ -47,7 +48,7 @@ turnbtn.addEventListener("click", () => {
             Vous et les bébés campestris finiront 
             en ragoût...
           </p>
-          <img src="chaudron.jpg" alt="Defaite image">
+          <img src="${chaudron}" alt="defaite image" class="img-fluid mt-3">
         </div>
       `;
     return;

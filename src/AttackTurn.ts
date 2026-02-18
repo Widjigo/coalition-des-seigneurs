@@ -4,10 +4,11 @@ import { aventuriers } from "./aventuriers";
 import { showParty, showObjects } from "./combat_pop-up";
 import { getTroglo, UpDateTroglo } from "./UpdateTroglo";
 import { party_objects } from "./party_objects";
-
+import finalR from "./assets/final-r.png";
 
 const affichageResultat = document.getElementById("resultCombat") as HTMLElement | null;
 const attackbtn = document.getElementById("attackbtn") as HTMLElement | null;
+
 
 function setAttackButtonVisible(visible: boolean) {
   if (!attackbtn) return;
@@ -146,12 +147,12 @@ export function Attack(initiativeTour, turnNumber) {
           <div>
             <h2 class="fw-bold" style="color:#03735f">Réussite!</h2>
             <p class="mt-3">
-            ${player.name} réussit, avec un jet de ${result}, à toucher le troglodyte. 
+             ${player.name} réussit, avec un jet de ${result}, à toucher le troglodyte. 
             Celui-ci souffrira de ${damage} points de dégât. Il tombe inconscient. 
-            Vous revenez avec les bébés campestries survivants et les remettez à Bestir toujours en larmes, mais de joie cette fois-ci. 
-            Pimple devient officiellement le héros de Grovine, une statut de sel est érigée à l'entrée de la grotte à son honneur. 
+      
+            Vous revenez avec les bébés campestries survivants...
             </p>
-            <img src="final-r.jpg" alt="reussite image">
+            <img src="${finalR}" alt="reussite image" class="img-fluid mt-3">
           </div>
         `;
       } else {
