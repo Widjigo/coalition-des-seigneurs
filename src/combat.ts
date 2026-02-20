@@ -64,8 +64,6 @@ attackbtn.addEventListener("click", () => {
 
 //Comment jouer 
 const howtoplayopen = document.getElementById("resultCombat");
-const howtoplayclose = document.getElementById("howtoplayclose");
-const modalContainer = document.querySelector(".pop-up-container") as HTMLDivElement;
 const popup = document.querySelector(".pop-up") as HTMLDivElement;
 
 howtoplayopen.addEventListener("click", () => {
@@ -73,18 +71,6 @@ howtoplayopen.addEventListener("click", () => {
     popup.style.top = rect.bottom + "px";        
     popup.style.left = rect.left + "px";         
     popup.style.position = "absolute";
-    modalContainer.classList.add("show");
-});
-
-howtoplayclose.addEventListener("click", () => {
-    modalContainer.classList.remove("show");    
-});
-
-const infoClose = document.getElementById("infoClose")as HTMLDivElement;
-const infoModal = document.querySelector(".infoModal") as HTMLDivElement; 
-
-infoClose.addEventListener("click", () => {
-    infoModal.classList.remove("show");    
 });
 
 // Recommencer 

@@ -207,6 +207,24 @@ html, body { height: 100%; margin: 0; }
   border-radius: 6px;
   background: #e6dac7;
   box-shadow: 1px 1px 3px #ada597;
+}
+
+
+/* ONLY "How to play" is forced inside the viewport */
+#howtoplay[popover]{
+  position: fixed;
+  top: 75px;         /* adjust for your header */
+  transform: translateX(-50%);
+  border-radius: 10px;
+  border-color: #ffffff;
+  color:  #6F4E37;
+}
+
+/* IMPORTANT: let the Initiative popover use default positioning */
+#mypopover[popover]{
+  position: absolute;   /* or just remove position entirely */
+  transform: translateX(-50%);
+  transform: none;
   border: none;
 }
 

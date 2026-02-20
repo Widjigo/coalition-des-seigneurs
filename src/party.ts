@@ -21,13 +21,17 @@ function isEmptyImage(imgElement: HTMLImageElement | null): boolean {
     return !imgElement || !imgElement.getAttribute("src");
 }
 
- //adding a party member
+//adding a party member
 export function addToParty(member: aventurier) {
   const MAX = 4;
   for (let i = 0; i < MAX; i++) {
     //check if the member is already in the party
     if ((party[i]) && party[i].id === member.id) {
-      console.log("Member is already in the party.")
+      console.log("Member is already in the party.");
+      showAlert(
+        "Attention, il semble que la partie n'aille pas été réinitialisée correctement. Veuillez recommencer une partie en rafraîchissant la page ou en cliquant sur le bouton recommencer plus bas.",
+        "warning"
+      );
       return;
     }
 
@@ -44,9 +48,9 @@ export function addToParty(member: aventurier) {
       }
     }
 
-  console.log("No empty slot available in the party.");
-    }
- }
+    console.log("No empty slot available in the party.");
+  }
+}
 
 let currentAnchorImage: HTMLImageElement | null = null;
 
@@ -111,3 +115,21 @@ function ClosePopup() {
 // Update popup position on scroll and resize to keep it stuck to anchor
 window.addEventListener("scroll", updatePopupPosition);
 window.addEventListener("resize", updatePopupPosition);
+
+function showAlert(message: string, type: string = "warning") {
+  const container = document.getElementById("alertContainer");
+  if (!container) return;
+
+  const alert = document.createElement("div");
+  alert.className = `alert alert-${type} alert-dismissible fade show shadow`;
+  alert.role = "alert";
+  alert.textContent = message;
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "btn-close";
+  button.setAttribute("data-bs-dismiss", "alert");
+
+  alert.appendChild(button);
+  container.appendChild(alert);
+}

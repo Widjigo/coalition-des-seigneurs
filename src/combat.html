@@ -16,11 +16,14 @@
 </head>
 
 <body>
-  <div class="pop-up-container">
-    <div class="pop-up">
-      <p>Text here</p>
-      <button class="btn btn-light close-btn" id="howtoplayclose"> Fermer </button>
-    </div>
+ 
+    
+    <div id="howtoplay" class="my-popover" popover>
+      <p>Vous êtes maintenant arrivé au <b>combat</b>  ! <br/><br/>
+      Selon l’initiative, les personnages effectueront une attaque.<br/>
+      Si des objets sont disponibles à l’utilisation, ils apparaîtront sous les informations du joueur actuel. <b> Chaque objet ne peut être utilisé qu’une seule fois.</b><br/>
+      En cliquant sur « Attaquer », l’aventurier lancera un dé 20. Si le jet réussit, il effectuera ensuite les jets de dégâts.<br/>
+      Une fois l’action terminée, cliquez sur « Terminer le tour ».</p>
   </div>
 
   <div class="party_pop-up-container">
@@ -62,10 +65,9 @@
     <div class="header">
       <div class="header-inner">
         <div class=title>
-          <h3 class="justify-content-center" style="color:#03735f"> SPORES ET DISPARITIONS </h3>
+          <h3 class="justify-content-center  h1 fw-bold" style="color:#03735f"> SPORES ET DISPARITIONS </h3>
         </div>
-        <button id="howtoplayopen" class="btn btn-outline-dark btn-lg info-btn" style="background-color:#e6dac7">
-          Comment jouer ? </button>
+        <button type="input" class="btn btn-outline-dark btn-lg" popovertarget="howtoplay" style="background-color:#e6dac7">  Comment jouer ? </button>
       </div>
     </div>
 
@@ -92,10 +94,10 @@
     <div class="combat" id="combatbox">
       <div class="general-combat">
 
-        <div class="fixed-box">
+        <div class="fixed-box h5">
           <div class="img-left"><img class="imgtroglo" src="assets/griffe2.gif" alt="troglodyteMonster"></div>
           <div class="info-right">
-            <div class="info-line"><b>Points de vie:</b> <span id="hpTroglo"></span><b> DC:</b> <span
+            <div class="info-line" ><b>Points de vie:</b> <span id="hpTroglo"></span><b> DC:</b> <span
                 id="dcTroglo"></span>
             </div>
             <div class="info-line"><b>Statut:</b> <span id="statutTroglo"></span><b> Bonus:</b> <span
@@ -110,7 +112,7 @@
           </div>
         </div>
 
-        <div class="combat-content d-flex flex-column" id="combat-box">
+        <div class="combat-content d-flex flex-column h5" style="color:#6F4E37" id="combat-box">
           <div class="d-flex justify-content-center gap-4 " ><b>Joueur en cours:</b> <span id="CurrentPlayer"></span>
           </div>
 
@@ -123,8 +125,8 @@
           <div class="d-non d-flex justify-content-center gap-4" id="dmgRowCP"><b>Dégâts:</b> <span id="dmgCP"></span></div>
 
           <div class="text-end">
-            <button type="button" class="btn btn-light" id="attackbtn"> Attaquer </button>
-            <button type="button" class="btn btn-light" id="turnbtn"> Terminer le tour </button>
+            <button type="button" class="btn btn-outline-dark" style="background-color:#03735f; color: white" id="attackbtn"> Attaquer </button>
+            <button type="button" class="btn btn-outline-dark" style="background-color:#03735f; color: white" id="turnbtn"> Terminer le tour </button>
           </div>
 
           <div>
@@ -133,7 +135,7 @@
           </div>
         </div>
 
-        <button type="input" class="btn btn-light" popovertarget="mypopover"> Initiative </button>
+        <button type="input" class="btn btn-outline-light close-btn fw-bold btn-lg" style="color: #03735f" popovertarget="mypopover"> Initiative </button>
         <div id="mypopover" class="my-popover" popover>
           <table class="table table-bordered" id="usersTable">
             <thead>
@@ -171,20 +173,11 @@
     </div>
 
     <div class="footer">
-      <div class="infoModal">
-        <div class="infoPopup">
-          <div id="informations"></div>
-          <button class="btn btn-light close-btn" id="infoClose"> Fermer </button>
-        </div>
-      </div>
-
       <hr class="my-3 border-dark" />
-
-      <button type="input" class="btn btn-light" id="newGame"> Recommencer la partie </button>
+      <button type="input" class="btn btn-outline-light close-btn fw-bold" style="color: #03735f" id="newGame"> Recommencer la partie </button>
       <br>
       <br>
       <p class="mb-0">Projet par Emmanuelle - 2025 </p>
-    </div>
   </div>
   <script type="module" src="/src/combat.ts"></script>
   <script type="module" src="/src/combat_pop-up.ts"></script>
