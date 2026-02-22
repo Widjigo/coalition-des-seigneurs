@@ -255,8 +255,6 @@ export function UseObjects(player: any, initiativeTour: any[], turnNumber: numbe
   const objetline = document.getElementById("objetsdispos");
   if (!objetline) return;
 
-  const troglo = getTroglo();
-
   // reset UI
   objetline.innerHTML = "";
 
