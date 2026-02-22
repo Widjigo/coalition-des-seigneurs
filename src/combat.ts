@@ -36,7 +36,7 @@ turnbtn.addEventListener("click", () => {
     console.log("Combat ends: everyone is unconscious");
     const result = document.getElementById("combatbox") as HTMLElement;
 
-     result.className = "d-flex justify-content-center align-items-center vh-100 text-center";
+     result.className = "d-flex justify-content-center align-items-center vh-100 text-center h4";
       result.innerHTML = `
         <div>
           <h2 class="fw-bold" style="color:#03735f">Défaite</h2>
@@ -75,12 +75,13 @@ howtoplayopen.addEventListener("click", () => {
 
 // Recommencer 
 const newGame = document.getElementById("newGame");
-newGame.addEventListener("click", function() {
-  location.reload();
-  localStorage.clear();
-
-  window.location.href = `${import.meta.env.BASE_URL}index.html`;
-});
+if (newGame) {
+  newGame.addEventListener("click", function() {
+    // Clear all saved state first, then navigate to the main page
+    localStorage.clear();
+    window.location.href = `${import.meta.env.BASE_URL}index.html`;
+  });
+}
 
 function loadDataWithInitiavive ()  {
   loadData();

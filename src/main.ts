@@ -48,9 +48,11 @@ infoClose.addEventListener("click", () => {
 
 // Recommencer 
 const newGame = document.getElementById("newGame");
-newGame.addEventListener("click", function() {
-  location.reload();
-  localStorage.clear();
-  window.location.href = "index.html"
-});
+if (newGame) {
+    newGame.addEventListener("click", function() {
+        // Clear saved game data and reload the page
+        localStorage.clear();
+        window.location.href = "index.html";
+    });
+}
 

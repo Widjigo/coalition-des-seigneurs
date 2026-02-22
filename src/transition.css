@@ -1,9 +1,13 @@
-
-html, body { height: 100%; margin: 0; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #e6dac7; /* safety: no white showing */
+}
 
 .layout {
-    background-color: #e6dac7;
-    min-height:100svh;
+  background-color: #e6dac7;
+  min-height: 100svh;
+  padding-top: 2rem;   /* ✅ move the box lower without white gap */
 }
 
 .layout div {
@@ -32,4 +36,20 @@ html, body { height: 100%; margin: 0; }
 
 #usersTable tbody tr:nth-child(even) {
   --bs-table-bg: #049a7d;        /* striped rows */
+}
+
+.story-box {
+  max-width: 900px;
+  margin: 0 auto;        /* no top margin */
+  padding: 3rem;
+
+  background: transparent;
+  border: 6px solid #6F4E37;
+  border-radius: 20px;
+  color: #6F4E37;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }

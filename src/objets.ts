@@ -35,7 +35,7 @@ export const objets: Record<number, objet> = {
     name: "Piège à ours",
     img: piege,
     imgUsed: usedPiege,
-    effect: "Immobilise la victime qui marche sur le piège. Les attaques pour le prochain tour font +2 de dégâts",
+    effect: "Immobilise la victime qui marche sur le piège.La prochaine attaque réussite fera +2 de dégâts",
     bonus: +2,
     statut : "Disponible",
   },

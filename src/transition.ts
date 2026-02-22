@@ -23,27 +23,87 @@ export function loadData() {
     const partyObjectsData = localStorage.getItem("party_objects");
 
     if (partyData) Object.assign(party, JSON.parse(partyData));
-    if (aventuriersData) Object.assign(aventuriers, JSON.parse(aventuriersData));
-    let temps = jaugeTempsData ? JSON.parse(jaugeTempsData) : 0;
+    if (aventuriersData) {
+        const parsed = JSON.parse(aventuriersData);
+        for (const key in parsed) {
+            // merge each aventurier object to preserve flags and methods
+            const idx = Number(key);
+            if ((aventuriers as any)[idx]) {
+                Object.assign((aventuriers as any)[idx], parsed[key]);
+            } else {
+                (aventuriers as any)[idx] = parsed[key];
+            }
+        }
+    }
+
+    // coerce temps to a number
+    let temps = jaugeTempsData ? Number(JSON.parse(jaugeTempsData)) : 0;
+    // marker to remember which transition effects were applied (prevents reapplying)
+    const appliedTransition = localStorage.getItem("transition_applied");
+
+    // If a different transition was applied previously, revert original HPs
+    if (appliedTransition && appliedTransition !== String(temps)) {
+        const origHpStr = localStorage.getItem("transition_original_hp");
+        if (origHpStr) {
+            try {
+                const origHp = JSON.parse(origHpStr);
+                for (const k in origHp) {
+                    const idx = Number(k);
+                    if ((aventuriers as any)[idx]) {
+                        (aventuriers as any)[idx].hp = origHp[k];
+                        // also clear any transition flag that was previously set
+                        (aventuriers as any)[idx].transitionBonus = false;
+                    }
+                }
+                // persist the reverted aventuriers
+                localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
+            } catch (e) {
+                console.warn("Failed to parse transition_original_hp", e);
+            }
+            localStorage.removeItem("transition_original_hp");
+        }
+        // clear the marker so we can apply new transition below
+        localStorage.removeItem("transition_applied");
+    }
+    
     if (partyObjectsData) Object.assign(party_objects, JSON.parse(partyObjectsData));
 
     if (temps === 0) {
-        // avoid stacking +5 multiple times if loadData() is called again
-        if (!aventuriers[6].transitionBonus) {
-            aventuriers[6].hp += 5;
-            aventuriers[6].transitionBonus = true; // small flag
-            localStorage.setItem("aventuriers", JSON.stringify(aventuriers))}
+        // avoid stacking +5 multiple times: only apply if not already applied for this temps
+        if (appliedTransition !== String(temps)) {
+            // store original HP before applying effect
+            const originalHp: Record<number, number> = {};
+            if (aventuriers[6]) originalHp[6] = aventuriers[6].hp;
+            localStorage.setItem("transition_original_hp", JSON.stringify(originalHp));
+
+            if (aventuriers[6] && aventuriers[6].transitionBonus !== true) {
+                aventuriers[6].hp += 5;
+                aventuriers[6].transitionBonus = true; // small flag
+                localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
+            }
+            localStorage.setItem("transition_applied", String(temps));
+        } else {
         }
+    }
 
     if (temps === 1) {
-            // avoid stacking +5 multiple times if loadData() is called again
-            if (!aventuriers[1].transitionBonus) {
+        // avoid stacking -2 multiple times: only apply if not already applied for this temps
+        if (appliedTransition !== String(temps)) {
+            // store original HP before applying effect
+            const originalHp: Record<number, number> = {};
+            if (aventuriers[1]) originalHp[1] = aventuriers[1].hp;
+            localStorage.setItem("transition_original_hp", JSON.stringify(originalHp));
+
+            if (aventuriers[1] && aventuriers[1].transitionBonus !== true) {
                 aventuriers[1].hp -= 2;
                 aventuriers[1].transitionBonus = true; // small flag
-                localStorage.setItem("aventuriers", JSON.stringify(aventuriers))
+                localStorage.setItem("aventuriers", JSON.stringify(aventuriers));
             }
+            localStorage.setItem("transition_applied", String(temps));
+        } else {
         }
-
+    }
+    
     const jg = document.getElementById("jg") as HTMLElement | null;
     if (jg) {
         if (temps === 0) {
@@ -107,12 +167,7 @@ export function loadData() {
             de tous attaquer avant lui!<br> <br>`;
         }
     }
-    console.log("Loaded:", {
-        party,
-        aventuriers,
-        temps,
-        party_objects
-    });
+    
     return (temps);
 }
 
@@ -120,15 +175,13 @@ function saveCampestri() {
     let save = rollDice(20);
     let needed = 10;
     let success = false;
-    console.log("saveroll:", save, "| needed:", needed,);
+    
 
     if (save >= needed) {
-        console.log("Campestri saved!");
         success = true;
         return { save, needed, success };
     }
     else {
-        console.log("Campestri NOT saved.");
         return { save, needed, success };
     };
 }

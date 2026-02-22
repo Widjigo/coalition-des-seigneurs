@@ -136,7 +136,7 @@ export function Attack(initiativeTour, turnNumber) {
       troglo.hp = troglo.hp - damage;
       if (troglo.statut === "Immobilisation") {
         troglo.hp = troglo.hp - 2;
-        troglo.statut = "Vivant"
+        troglo.statut = "Vivant";   
       };
 
       console.log("troglo hp now:", troglo.hp);
@@ -147,33 +147,33 @@ export function Attack(initiativeTour, turnNumber) {
         
         if (temps <= 1 ){
         const reussite = document.getElementById("combatbox") as HTMLElement;
-        reussite.className = "d-flex justify-content-center align-items-center vh-100 text-center";
+        reussite.className = "d-flex justify-content-center align-items-center vh-100 text-center h4";
         reussite.innerHTML = `
           <div>
-            <h2 class="fw-bold" style="color:#03735f">Réussite...</h2>
+            <h2 class="fw-bold h1" style="color:#03735f">Réussite...</h2>
             <p class="mt-3">
              ${player.name} réussit, avec un jet de ${result}, à toucher le troglodyte. 
             Celui-ci souffrira de ${damage} points de dégât. Il tombe inconscient. 
-      
+            <br/>
             Vous revenez avec les bébés campestries survivants... Une statut de sel est érigé en l'honneur de Pimple, devenu officiellement le protecteur de Grovine. 
             </p>
-            <img src="${sculpture}" alt="reussite image" class="img-fluid mt-3">
+            <img src="${sculpture}" alt="reussite image" class="img-fluid mt-3 w-50">
           </div>
         `
         }
         else {
         const reussite = document.getElementById("combatbox") as HTMLElement;
-        reussite.className = "d-flex justify-content-center align-items-center vh-100 text-center";
+        reussite.className = "d-flex justify-content-center align-items-center vh-100 text-center h4";
         reussite.innerHTML = `
           <div>
             <h2 class="fw-bold" style="color:#03735f">Réussite!</h2>
             <p class="mt-3">
              ${player.name} réussit, avec un jet de ${result}, à toucher le troglodyte. 
-            Celui-ci souffrira de ${damage} points de dégât. Il tombe inconscient. 
-      
+            Celui-ci souffrira de ${damage} points de dégât et tombe inconscient. 
+            <br/>
             Vous revenez avec les bébés campestries. Une statut de sel est érigé en l'honneur de Pimple, devenu officiellement le protecteur de Grovine. 
             </p>
-            <img src="${finalR}" alt="reussite image" class="img-fluid mt-3">
+            <img src="${finalR}" alt="reussite image" class="img-fluid mt-3 w-50">
           </div>
         `;}
       } else {
@@ -200,7 +200,7 @@ function trogloAttack() {
   const partyMember = aventuriers[partyRandom.id];
   let result = rollDice(20)
   const troglo = getTroglo();
-
+  
   if (troglo.statut === "Étouffement") {
     result = result - 4;
     troglo.statut = "Vivant";
@@ -283,18 +283,26 @@ export function UseObjects(player: any, initiativeTour: any[], turnNumber: numbe
         const maxHp = Number(player.max_HP);
         const safeHp = Number.isFinite(hpNow) ? hpNow : maxHp;
         player.hp = Math.min(safeHp + 5, maxHp);
+        ShowTurn(initiativeTour, turnNumber);
 
       } else if (obj.id === 2) {
-        troglo.statut = "Immobilisation";
+        // set directly on the shared aventuriers object to avoid reference mismatch
+        aventuriers[6].statut = "Immobilisation";
+
+        // refresh troglo panel immediately so player sees the status change
+        UpDateTroglo();
+
       } else if (obj.id === 3) {
         player.statut = "Vivant";
+        ShowTurn(initiativeTour, turnNumber);
       }
       // IMPORTANT: assignment, not ===
       party_objects[key].statut = "Indisponible";
 
       // refresh buttons (used one disappears)
       showObjects();
-      ShowTurn(initiativeTour, turnNumber);
+      // ensure troglo panel is refreshed and log current values for debugging
+      UpDateTroglo();
     });
 
     objetline.appendChild(btn);

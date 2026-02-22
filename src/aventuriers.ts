@@ -131,7 +131,7 @@ export const aventuriers: Record<number, aventurier> = {
     attack_bonus: 6,
     attack_dmg_roll: 6,
     attack_dmg_bonus: 3,
-    ability: "Souffle au visage empoisonné : Désavantage durant un tour",
+    ability: "Souffle empoisonné: Désavantage durant un tour,",
     statut : "Vivant",
     transitionBonus: false,
   },

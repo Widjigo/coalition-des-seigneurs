@@ -16,23 +16,42 @@ export function UpDateTroglo (){
     const bonusTroglo = document.getElementById("bonusTroglo") as HTMLElement;
     const troglodyte = getTroglo();
 
-    if (!hpTroglo || !dcTroglo || !attackTroglo || !dmgRowTroglo || !dmgTroglo || !specialTroglo || !statutTroglo) {
-    return;}
 
-      hpTroglo.textContent = String(troglodyte.hp);
-      dcTroglo.textContent = String(troglodyte.dc);
-      attackTroglo.textContent =
-        troglodyte.attack_bonus != null
-          ? troglodyte.attack_type + " +" + troglodyte.attack_bonus + " pour toucher "
-          : troglodyte.attack_type;
-      statutTroglo.textContent = String(troglodyte.statut);
-      if (troglodyte.transitionBonus === true){
-        bonusTroglo.textContent = "Repus, +5 pv"
-      }
-      specialTroglo.textContent = troglodyte.ability;
-      if (troglodyte.attack_dmg_bonus != null){
-        dmgTroglo.textContent =
-        "1d" + troglodyte.attack_dmg_roll + " +" + troglodyte.attack_dmg_bonus;
-        dmgRowTroglo.classList.remove("d-none");
-      }
+  // Update only the elements that exist to avoid early exit.
+  if (hpTroglo) hpTroglo.textContent = String(troglodyte.hp);
+  else console.warn("UpDateTroglo: missing #hpTroglo element");
+
+  if (dcTroglo) dcTroglo.textContent = String(troglodyte.dc);
+  else console.warn("UpDateTroglo: missing #dcTroglo element");
+
+  if (attackTroglo) {
+    attackTroglo.textContent =
+      troglodyte.attack_bonus != null
+        ? troglodyte.attack_type + " +" + troglodyte.attack_bonus + " pour toucher "
+        : troglodyte.attack_type;
+  } else console.warn("UpDateTroglo: missing #attacktroglo element");
+
+  // debug: log current statut and element before changing
+  if (statutTroglo) {
+    statutTroglo.textContent = String(troglodyte.statut);
+  } else console.warn("UpDateTroglo: missing #statutTroglo element");
+
+  if (bonusTroglo) {
+    bonusTroglo.textContent = troglodyte.transitionBonus === true ? "Repus, +5 pv" : "";
+  }
+
+  if (specialTroglo) specialTroglo.textContent = troglodyte.ability;
+  else console.warn("UpDateTroglo: missing #specialTroglo element");
+
+  if (dmgTroglo && dmgRowTroglo) {
+    if (troglodyte.attack_dmg_bonus != null) {
+      dmgTroglo.textContent = "1d" + troglodyte.attack_dmg_roll + " +" + troglodyte.attack_dmg_bonus;
+      dmgRowTroglo.classList.remove("d-none");
+    } else {
+      dmgRowTroglo.classList.add("d-none");
+    }
+  } else {
+    if (!dmgTroglo) console.warn("UpDateTroglo: missing #dmgTroglo element");
+    if (!dmgRowTroglo) console.warn("UpDateTroglo: missing #dmgRowTroglo element");
+  }
     }
